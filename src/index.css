@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+body {
+  background-color: #121212;
+  color: #EDE8D0;
+  font-family: "DejaVu Sans Mono", "Liberation Mono", ui-monospace, Menlo, Consolas, monospace;
+}
