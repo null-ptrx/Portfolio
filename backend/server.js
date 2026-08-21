@@ -3,10 +3,29 @@ import 'dotenv/config'
 import { connectDb } from './config/db.js'
 import { contact } from './models/contactSchema.js';
 import { project } from './models/projectSchema.js';
+import cors from 'cors'
+
 
 const app = express();
+app.use(cors());
+app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Hello World!');
+});
+
+app.post('/api/contact', async (req, res) => {
+    try {
+        console.log(req.body);
+        const userContact = await contact.create({
+            name: req.body.name,
+            email: req.body.email,
+            message: req.body.message,
+        });
+        res.status(200).json(userContact);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'failed to create contact' });
+    }
 });
 
 const startServer = async () => {

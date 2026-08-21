@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ProjectCard from './components/ProjectCard'
+import { useState } from 'react'
 
 
 const projects = [
@@ -25,6 +26,28 @@ const projects = [
 const skills = ['React', 'Node.js', 'Express', 'MongoDB', 'Docker', 'Linux', 'Git', 'Python', 'PostgreSQL', 'Redis']
 
 const App = () => {
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const handleChange = async (e) => {
+    const { name, value } = e.target;
+    setForm(prev => ({...prev , [name] : value}));
+  };
+
+  const handleSubmit = async () => {
+    await fetch('http://localhost:3000/api/contact' , {
+      method : 'POST', 
+      headers : { 'Content-Type' : 'application/json'},
+      body: JSON.stringify(form),
+    });
+    setForm({
+      name: '',
+      email: '',
+      message: '',
+    })
+  };
   return (
     <div className="min-h-screen bg-[#121212] text-[#EDE8D0]">
       <Navbar />
@@ -123,28 +146,38 @@ const App = () => {
               <div className="flex flex-col gap-1">
                 <label className="text-xs text-[#A8A296]">name</label>
                 <input
+                  onChange = {handleChange}
                   type="text"
                   className="border border-[#3A3A3A] rounded-none bg-[#121212] text-[#EDE8D0] text-sm px-4 py-3 outline-none"
                   placeholder="your name"
+                  value = {form.name}
+                  name='name'
                 />
               </div>
               <div className="flex flex-col gap-1">
                 <label className="text-xs text-[#A8A296]">email</label>
                 <input
+                  onChange={handleChange}
                   type="email"
                   className="border border-[#3A3A3A] rounded-none bg-[#121212] text-[#EDE8D0] text-sm px-4 py-3 outline-none"
                   placeholder="you@example.com"
+                  value = {form.email}
+                  name='email'
                 />
               </div>
               <div className="flex flex-col gap-1">
                 <label className="text-xs text-[#A8A296]">message</label>
                 <textarea
+                  onChange={handleChange}
                   rows="5"
                   className="border border-[#3A3A3A] rounded-none bg-[#121212] text-[#EDE8D0] text-sm px-4 py-3 outline-none resize-none"
                   placeholder="write something..."
+                value = {form.message}
+                  name= 'message'
                 ></textarea>
               </div>
               <button
+                onClick={handleSubmit}
                 type="button"
                 className="border border-[#3A3A3A] rounded-none px-6 py-3 text-sm text-[#EDE8D0] bg-transparent cursor-pointer self-start"
               >
@@ -160,4 +193,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;
