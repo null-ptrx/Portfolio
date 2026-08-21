@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect, useState } from 'react'
 
 const dummyMessages = [
   {
@@ -52,6 +53,31 @@ const dummyProjects = [
 ]
 
 const AdminPage = () => {
+  const [contactMess, setContactMess] = useState([]);
+
+  const fetchContact = async () =>{
+    let res = await fetch('http://localhost:3000/api/contact')
+    let data = await res.json();
+    setContactMess(data);
+  }
+  useEffect(() => {
+    fetchContact();
+  }, []);
+
+  const timeAgo = (createdAt) => {
+    let now = new Date();
+    let past = new Date(createdAt);
+    let ago = Math.floor((now - past) / 1000);
+    if (ago < 60) return `${ago} sec ago`;
+    const min = Math.floor(ago / 60);
+    if (min < 60) return `${min} min ago`;
+    const hours = Math.floor(min / 60);
+    if (hours < 24) return `${hours} hours ago`;
+    const days = Math.floor(hours / 24);
+    if (days <= 30) return `${days} days ago`;
+    if (days > 30) return 'old';
+  }
+  
   return (
     <div className="min-h-screen bg-[#121212] text-[#EDE8D0]">
 
@@ -116,11 +142,11 @@ const AdminPage = () => {
           <div className="w-full md:w-1/2 border border-[#3A3A3A] bg-[#1A1A1A] p-8">
             <h2 className="text-sm text-[#A8A296] mb-6">contact messages</h2>
             <div className="flex flex-col gap-4">
-              {dummyMessages.map((msg, i) => (
+              {contactMess.map((msg, i) => (
                 <div key={i} className="border border-[#3A3A3A] p-4 flex flex-col gap-2">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-[#EDE8D0]">{msg.name}</span>
-                    <span className="text-xs text-[#A8A296]">{msg.timestamp}</span>
+                    <span className="text-xs text-[#A8A296]">{timeAgo(msg.createdAt)}</span>
                   </div>
                   <span className="text-xs text-[#A8A296]">{msg.email}</span>
                   <p className="text-sm text-[#A8A296] leading-relaxed">{msg.message}</p>

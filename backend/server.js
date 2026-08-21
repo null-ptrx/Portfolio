@@ -28,6 +28,16 @@ app.post('/api/contact', async (req, res) => {
     }
 });
 
+app.get('/api/contact', async (req, res) => {
+    try {
+        let users = await contact.find(); 
+        res.json(users);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'failed to get users' });
+    }
+});
+
 const startServer = async () => {
     try {
         await connectDb();
