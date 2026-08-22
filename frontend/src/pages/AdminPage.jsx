@@ -1,56 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 
-const dummyMessages = [
-  {
-    name: 'alice@void',
-    email: 'alice@example.com',
-    message: 'Hey, loved the portfolio design. What stack did you use for the backend?',
-    timestamp: '2026-08-15 14:32',
-  },
-  {
-    name: 'bob_dev',
-    email: 'bob@devmail.io',
-    message: 'Would you be open to freelance work? I have a project that fits your skill set.',
-    timestamp: '2026-08-14 09:17',
-  },
-  {
-    name: 'charlie',
-    email: 'charlie@nullmail.net',
-    message: 'Your deployd project is exactly what I needed. Any plans to add ARM support?',
-    timestamp: '2026-08-13 22:05',
-  },
-  {
-    name: 'delta_sys',
-    email: 'delta@sysops.dev',
-    message: 'Nice Arch rice. What WM are you running these days?',
-    timestamp: '2026-08-12 16:48',
-  },
-  {
-    name: 'eve',
-    email: 'eve@proton.me',
-    message: 'Stumbled on your GitHub from a Reddit thread. Clean commit history — respect.',
-    timestamp: '2026-08-11 11:30',
-  },
-]
-
-const dummyProjects = [
-  {
-    name: 'devboard',
-    description: 'A real-time developer dashboard that aggregates GitHub activity, CI/CD pipeline status, and server health metrics into a single terminal-style interface.',
-    tech: 'React, Node.js, WebSocket, Redis',
-  },
-  {
-    name: 'pktsniff',
-    description: 'Lightweight network packet analyzer with filtering, protocol detection, and exportable capture logs. Built for quick local debugging sessions.',
-    tech: 'Python, Scapy, Docker, SQLite',
-  },
-  {
-    name: 'deployd',
-    description: 'Zero-config deployment daemon that watches a Git repo, builds containers, and rolls out updates with health checks and automatic rollback.',
-    tech: 'Go, Docker, Nginx, Bash',
-  },
-]
 
 const AdminPage = () => {
   const [contactMess, setContactMess] = useState([]);
@@ -60,6 +10,8 @@ const AdminPage = () => {
     let data = await res.json();
     setContactMess(data);
   }
+
+
   useEffect(() => {
     fetchContact();
   }, []);
@@ -77,6 +29,45 @@ const AdminPage = () => {
     if (days <= 30) return `${days} days ago`;
     if (days > 30) return 'old';
   }
+
+  const [projects, setprojects] = useState([]);
+  const [projectForm, setprojectForm] = useState({
+    name : '',
+    discreption : '',
+    github : '',
+    docker : '',
+    live : ''
+  });
+
+  const handleChange = async (e) => {
+    const { name, value } = e.target;
+    setprojectForm(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async () => {
+    await fetch('http://localhost:3000/api/project', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(projectForm),
+    });
+    setprojectForm({
+      name: '',
+      discreption: '',
+      github: '',
+      docker: '',
+      live: ''
+    });
+    fetchProjects();
+  };
+  const fetchProjects = async () => {
+    let res = await fetch('http://localhost:3000/api/project')
+    let data = await res.json();
+    setprojects(data);
+  }
+  useEffect(() => {
+    fetchProjects();
+  }, [])
+  
   
   return (
     <div className="min-h-screen bg-[#121212] text-[#EDE8D0]">
@@ -103,35 +94,41 @@ const AdminPage = () => {
                 type="text"
                 className="border border-[#3A3A3A] rounded-none bg-[#121212] text-[#EDE8D0] text-sm px-4 py-3 outline-none"
                 placeholder="project name"
-                readOnly
+                name = 'name' value = {projectForm.name}
+                onChange = {handleChange}
               />
               <textarea
                 rows="4"
                 className="border border-[#3A3A3A] rounded-none bg-[#121212] text-[#EDE8D0] text-sm px-4 py-3 outline-none resize-none"
                 placeholder="description"
-                readOnly
+                name = 'discreption' value={projectForm.discreption}
+                onChange={handleChange}
               ></textarea>
               <input
                 type="text"
                 className="border border-[#3A3A3A] rounded-none bg-[#121212] text-[#EDE8D0] text-sm px-4 py-3 outline-none"
                 placeholder="github link"
-                readOnly
+                onChange={handleChange}
+                name='github' value={projectForm.github}
               />
               <input
                 type="text"
                 className="border border-[#3A3A3A] rounded-none bg-[#121212] text-[#EDE8D0] text-sm px-4 py-3 outline-none"
                 placeholder="docker link"
-                readOnly
+                onChange={handleChange}
+                name='docker' value={projectForm.docker}
               />
               <input
                 type="text"
                 className="border border-[#3A3A3A] rounded-none bg-[#121212] text-[#EDE8D0] text-sm px-4 py-3 outline-none"
                 placeholder="live link"
-                readOnly
+                onChange={handleChange}
+                name='live' value={projectForm.live}
               />
               <button
                 type="button"
                 className="border border-[#3A3A3A] rounded-none px-6 py-3 text-sm text-[#EDE8D0] bg-transparent cursor-pointer self-start mt-2"
+                onClick={handleSubmit}
               >
                 Add Project
               </button>
@@ -163,10 +160,10 @@ const AdminPage = () => {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-sm text-[#A8A296] mb-6">manage projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {dummyProjects.map((project, i) => (
+            {projects.map((project, i) => (
               <div key={i} className="border border-[#3A3A3A] bg-[#1A1A1A] rounded-none p-6 flex flex-col gap-4">
                 <h3 className="text-lg font-bold text-[#EDE8D0]">{project.name}</h3>
-                <p className="text-sm text-[#A8A296] leading-relaxed">{project.description}</p>
+                <p className="text-sm text-[#A8A296] leading-relaxed">{project.discreption}</p>
                 <div className="text-xs text-[#A8A296]">{project.tech}</div>
                 <div className="flex gap-3 mt-auto pt-4">
                   <button className="border border-[#3A3A3A] rounded-none px-4 py-2 text-sm text-[#EDE8D0] bg-transparent cursor-pointer">

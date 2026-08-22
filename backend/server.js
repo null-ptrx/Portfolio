@@ -5,7 +5,6 @@ import { contact } from './models/contactSchema.js';
 import { project } from './models/projectSchema.js';
 import cors from 'cors'
 
-
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -28,6 +27,23 @@ app.post('/api/contact', async (req, res) => {
     }
 });
 
+app.post('/api/project', async (req, res) => {
+    try {
+        console.log(req.body);
+        const projects = await project.create({
+            name: req.body.name,
+            discreption: req.body.discreption,
+            github: req.body.github,
+            docker: req.body.docker,
+            live: req.body.live,
+        });
+        res.status(200).json(projects);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'failed to add this project' });
+    }
+});
+
 app.get('/api/contact', async (req, res) => {
     try {
         let users = await contact.find(); 
@@ -35,6 +51,16 @@ app.get('/api/contact', async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: 'failed to get users' });
+    }
+});
+
+app.get('/api/project', async (req, res) => {
+    try {
+        let projects = await project.find();
+        res.json(projects);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'failed to get projects' });
     }
 });
 
