@@ -37,7 +37,7 @@ const App = () => {
   };
 
   const handleSubmit = async () => {
-    await fetch('http://localhost:3000/api/contact' , {
+    await fetch('${import.meta.env.VITE_API_URL}/api/contact' , {
       method : 'POST', 
       headers : { 'Content-Type' : 'application/json'},
       body: JSON.stringify(form),

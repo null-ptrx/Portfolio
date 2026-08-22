@@ -6,7 +6,7 @@ const AdminPage = () => {
   const [contactMess, setContactMess] = useState([]);
 
   const fetchContact = async () =>{
-    let res = await fetch('http://localhost:3000/api/contact')
+    let res = await fetch('${import.meta.env.VITE_API_URL}/api/contact')
     let data = await res.json();
     setContactMess(data);
   }
@@ -45,7 +45,7 @@ const AdminPage = () => {
   };
 
   const handleSubmit = async () => {
-    await fetch('http://localhost:3000/api/project', {
+    await fetch('${import.meta.env.VITE_API_URL}/api/project', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(projectForm),
@@ -60,7 +60,7 @@ const AdminPage = () => {
     fetchProjects();
   };
   const fetchProjects = async () => {
-    let res = await fetch('http://localhost:3000/api/project')
+    let res = await fetch('${import.meta.env.VITE_API_URL}/api/project')
     let data = await res.json();
     setprojects(data);
   }

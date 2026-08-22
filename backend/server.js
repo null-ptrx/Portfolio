@@ -6,7 +6,9 @@ import { project } from './models/projectSchema.js';
 import cors from 'cors'
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: 'https://portfolio-2fq5ua02p-ds331048-5589s-projects.vercel.app', // your actual Vercel URL
+}));
 app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Hello World!');
