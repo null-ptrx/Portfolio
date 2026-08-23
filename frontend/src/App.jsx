@@ -2,26 +2,26 @@ import React from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ProjectCard from './components/ProjectCard'
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 
 
-const projects = [
-  {
-    name: 'devboard',
-    description: 'A real-time developer dashboard that aggregates GitHub activity, CI/CD pipeline status, and server health metrics into a single terminal-style interface.',
-    tech: 'React, Node.js, WebSocket, Redis',
-  },
-  {
-    name: 'pktsniff',
-    description: 'Lightweight network packet analyzer with filtering, protocol detection, and exportable capture logs. Built for quick local debugging sessions.',
-    tech: 'Python, Scapy, Docker, SQLite',
-  },
-  {
-    name: 'deployd',
-    description: 'Zero-config deployment daemon that watches a Git repo, builds containers, and rolls out updates with health checks and automatic rollback.',
-    tech: 'Go, Docker, Nginx, Bash',
-  },
-]
+// const projects = [
+//   {
+//     name: 'devboard',
+//     description: 'A real-time developer dashboard that aggregates GitHub activity, CI/CD pipeline status, and server health metrics into a single terminal-style interface.',
+//     tech: 'React, Node.js, WebSocket, Redis',
+//   },
+//   {
+//     name: 'pktsniff',
+//     description: 'Lightweight network packet analyzer with filtering, protocol detection, and exportable capture logs. Built for quick local debugging sessions.',
+//     tech: 'Python, Scapy, Docker, SQLite',
+//   },
+//   {
+//     name: 'deployd',
+//     description: 'Zero-config deployment daemon that watches a Git repo, builds containers, and rolls out updates with health checks and automatic rollback.',
+//     tech: 'Go, Docker, Nginx, Bash',
+//   },
+// ]
 
 const skills = ['React', 'Node.js', 'Express', 'MongoDB', 'Docker', 'Linux', 'Git', 'Python', 'PostgreSQL', 'Redis']
 
@@ -31,13 +31,14 @@ const App = () => {
     email: '',
     message: '',
   });
+  const [projects, setprojects] = useState([])
   const handleChange = async (e) => {
     const { name, value } = e.target;
     setForm(prev => ({...prev , [name] : value}));
   };
 
   const handleSubmit = async () => {
-    await fetch('${import.meta.env.VITE_API_URL}/api/contact' , {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/contact` , {
       method : 'POST', 
       headers : { 'Content-Type' : 'application/json'},
       body: JSON.stringify(form),
@@ -48,6 +49,17 @@ const App = () => {
       message: '',
     })
   };
+
+  const fetchProjects = async () => {
+    let res = await fetch(`${import.meta.env.VITE_API_URL}/api/project`)
+    let data = await res.json();
+    setprojects(data);
+  }
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+  
   return (
     <div className="min-h-screen bg-[#121212] text-[#EDE8D0]">
       <Navbar />
@@ -93,7 +105,7 @@ const App = () => {
                 key={project.name}
                 name={project.name}
                 description={project.description}
-                tech={project.tech}
+                // tech={project.tech}
               />
             ))}
           </div>

@@ -6,8 +6,24 @@ import { project } from './models/projectSchema.js';
 import cors from 'cors'
 
 const app = express();
+// app.use(cors());
+// app.use(cors({
+//     origin: 'https://portfolio-2fq5ua02p-ds331048-5589s-projects.vercel.app', // your actual Vercel URL
+// }));
+
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://portfolio-2fq5ua02p-ds331048-5589s-projects.vercel.app',
+];
+
 app.use(cors({
-    origin: 'https://portfolio-2fq5ua02p-ds331048-5589s-projects.vercel.app', // your actual Vercel URL
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
 }));
 app.use(express.json());
 app.get('/', (req, res) => {
@@ -15,6 +31,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/contact', async (req, res) => {
+   
     try {
         console.log(req.body);
         const userContact = await contact.create({
@@ -30,6 +47,7 @@ app.post('/api/contact', async (req, res) => {
 });
 
 app.post('/api/project', async (req, res) => {
+    console.log('dhami')
     try {
         console.log(req.body);
         const projects = await project.create({
