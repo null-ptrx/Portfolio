@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
-// import LoginForm from '../components/LoginForm';
+import LoginForm from '../components/LoginForm';
 const AdminPage = () => {
   const [contactMess, setContactMess] = useState([]);
 
@@ -45,12 +45,19 @@ const AdminPage = () => {
   };
 
   const handleSubmit = async () => {
-    console.log('dhami')
+    if (projectForm._id) {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/project/${projectForm._id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(projectForm),
+      });
+    } else {
     await fetch(`${import.meta.env.VITE_API_URL}/api/project`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(projectForm),
-    });
+    }); 
+  }
     setprojectForm({
       name: '',
       discreption: '',
@@ -71,13 +78,24 @@ const AdminPage = () => {
   }, [])
   
   const handleEdit = async (_id) => {
-    await fetch(`${import.meta.env.VITE_API_URL}/api/editroject`)
-    
+    let res = await fetch(`${import.meta.env.VITE_API_URL}/api/editProject/${_id}`);
+    let data = await res.json();
+    setprojectForm(data);
   }
   const handleDelete = async (_id) => {
     await fetch(`${import.meta.env.VITE_API_URL}/api/project/${_id}`, {
       method : 'delete'
     });
+    if (projectForm._id === _id) {
+      setprojectForm({
+        name: '',
+        discreption: '',
+        tech: '',
+        github: '',
+        docker: '',
+        live: ''
+      });
+    }
     fetchProjects();
   }
     // if (login) {

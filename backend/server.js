@@ -95,6 +95,27 @@ app.delete('/api/project/:id', async (req, res) => {
     }
 });
 
+app.get('/api/editProject/:id', async (req, res) => {
+    console.log('dhami');
+    try {
+        let editProject = await project.findOne({ _id: req.params.id })
+        res.status(200).json(editProject);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'failed to find project' });
+    }
+});
+
+app.put('/api/project/:id', async (req, res) => {
+    try {
+        await project.findByIdAndUpdate(req.params.id , req.body);
+        res.status(200).json('project updated');
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'failed to update' });
+    }
+});
+
 app.post('/api/adminLogin', async (req, res) => {
     let emailCheck = req.body.eamil;
     let passwordCheck = req.body.password;

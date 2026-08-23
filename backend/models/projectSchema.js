@@ -4,7 +4,7 @@ const projectSchema = new mongoose.Schema({
     name : String,
     discreption : String,
     tech : String,
-    githube : String,
+    github : String,
     live : String, 
     docker : String,
 });
