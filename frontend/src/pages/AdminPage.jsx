@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
-import LoginForm from '../components/LoginForm';
+// import LoginForm from '../components/LoginForm';
 const AdminPage = () => {
   const [contactMess, setContactMess] = useState([]);
 
