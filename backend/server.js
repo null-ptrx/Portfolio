@@ -85,6 +85,16 @@ app.get('/api/project', async (req, res) => {
     }
 });
 
+app.delete('/api/project/:id', async (req, res) => {
+    try {
+        await project.deleteOne({_id : req.params.id})
+        res.status(200).json('project deleted');
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'failed to delete project' });
+    }
+});
+
 app.post('/api/adminLogin', async (req, res) => {
     let emailCheck = req.body.eamil;
     let passwordCheck = req.body.password;

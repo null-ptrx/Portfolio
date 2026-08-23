@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import LoginForm from '../components/LoginForm';
-const AdminPage = ({login}) => {
+const AdminPage = () => {
   const [contactMess, setContactMess] = useState([]);
 
   const fetchContact = async () =>{
@@ -70,10 +70,19 @@ const AdminPage = ({login}) => {
     fetchProjects();
   }, [])
   
-  
-    if (!login) {
-      return <LoginForm/>; 
-    }
+  const handleEdit = async (_id) => {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/editroject`)
+    
+  }
+  const handleDelete = async (_id) => {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/project/${_id}`, {
+      method : 'delete'
+    });
+    fetchProjects();
+  }
+    // if (login) {
+    //   return <LoginForm/>; 
+    // }
     return ( 
     <div className="min-h-screen bg-[#121212] text-[#EDE8D0]">
 
@@ -178,10 +187,10 @@ const AdminPage = ({login}) => {
                 <p className="text-sm text-[#A8A296] leading-relaxed">{project.discreption}</p>
                 <div className="text-xs text-[#A8A296]">{project.tech}</div>
                 <div className="flex flex-wrap gap-2 md:gap-3 mt-auto pt-4">
-                  <button className="border border-[#3A3A3A] rounded-none px-4 py-2 text-sm text-[#EDE8D0] bg-transparent cursor-pointer">
+                  <button className="border border-[#3A3A3A] rounded-none px-4 py-2 text-sm text-[#EDE8D0] bg-transparent cursor-pointer" onClick = {()=> handleEdit(project._id)}>
                     Edit
                   </button>
-                  <button className="border border-[#3A3A3A] rounded-none px-4 py-2 text-sm text-[#EDE8D0] bg-transparent cursor-pointer">
+                  <button className="border border-[#3A3A3A] rounded-none px-4 py-2 text-sm text-[#EDE8D0] bg-transparent cursor-pointer" onClick = {() => handleDelete(project._id)} >
                     Delete
                   </button>
                 </div>

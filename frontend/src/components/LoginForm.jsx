@@ -10,7 +10,7 @@ const LoginForm = () => {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
   };
-  const [login, setlogin] = useState(false)
+  const [login, setlogin] = useState(true)
   const handleSubmit = async (e) => {
     let res = await fetch(`${import.meta.env.VITE_API_URL}/api/adminLogin`);
     if (res === true) {
