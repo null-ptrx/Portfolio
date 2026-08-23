@@ -1,11 +1,11 @@
 import React from 'react'
 
-const ProjectCard = ({ name, description }) => {
+const ProjectCard = ({ name, description, tech }) => {
   return (
     <div className="border border-[#3A3A3A] bg-[#1A1A1A] rounded-none p-6 flex flex-col gap-4">
       <h3 className="text-lg font-bold text-[#EDE8D0]">{name}</h3>
       <p className="text-sm text-[#A8A296] leading-relaxed">{description}</p>
-      {/* <div className="text-xs text-[#A8A296]">{tech}</div> */}
+      <div className="text-xs text-[#A8A296]">{tech}</div>
       <div className="flex gap-3 mt-auto pt-4">
         <button className="border border-[#3A3A3A] rounded-none px-4 py-2 text-sm text-[#EDE8D0] bg-transparent cursor-pointer">GitHub</button>
         <button className="border border-[#3A3A3A] rounded-none px-4 py-2 text-sm text-[#EDE8D0] bg-transparent cursor-pointer">Live</button>

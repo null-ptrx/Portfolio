@@ -53,6 +53,7 @@ app.post('/api/project', async (req, res) => {
         const projects = await project.create({
             name: req.body.name,
             discreption: req.body.discreption,
+            tech: req.body.tech,
             github: req.body.github,
             docker: req.body.docker,
             live: req.body.live,
@@ -81,6 +82,18 @@ app.get('/api/project', async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: 'failed to get projects' });
+    }
+});
+
+app.post('/api/adminLogin', async (req, res) => {
+    let emailCheck = req.body.eamil;
+    let passwordCheck = req.body.password;
+    try {
+        let isAdmin = await adminLogin.findOne({password : passwordCheck, email : emailCheck});
+        res.json(!!isAdmin);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'incoreect admin login' });
     }
 });
 

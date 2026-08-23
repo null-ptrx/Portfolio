@@ -3,7 +3,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ProjectCard from './components/ProjectCard'
 import { useState, useEffect} from 'react'
-
+import LoginForm from './components/LoginForm'
 
 // const projects = [
 //   {
@@ -62,6 +62,7 @@ const App = () => {
   
   return (
     <div className="min-h-screen bg-[#121212] text-[#EDE8D0]">
+    
       <Navbar />
       {/* ── Hero ── */}
       <section className="pt-20 px-20">
@@ -105,7 +106,7 @@ const App = () => {
                 key={project.name}
                 name={project.name}
                 description={project.description}
-                // tech={project.tech}
+                tech={project.tech}
               />
             ))}
           </div>

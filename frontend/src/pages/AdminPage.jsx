@@ -1,8 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
-
-
-const AdminPage = () => {
+import LoginForm from '../components/LoginForm';
+const AdminPage = ({login}) => {
   const [contactMess, setContactMess] = useState([]);
 
   const fetchContact = async () =>{
@@ -34,6 +33,7 @@ const AdminPage = () => {
   const [projectForm, setprojectForm] = useState({
     name : '',
     discreption : '',
+    tech : '',
     github : '',
     docker : '',
     live : ''
@@ -54,6 +54,7 @@ const AdminPage = () => {
     setprojectForm({
       name: '',
       discreption: '',
+      tech : '',
       github: '',
       docker: '',
       live: ''
@@ -70,7 +71,10 @@ const AdminPage = () => {
   }, [])
   
   
-  return (
+    if (!login) {
+      return <LoginForm/>; 
+    }
+    return ( 
     <div className="min-h-screen bg-[#121212] text-[#EDE8D0]">
 
       {/* ── Header / Topbar ── */}
@@ -103,6 +107,13 @@ const AdminPage = () => {
                 className="border border-[#3A3A3A] rounded-none bg-[#121212] text-[#EDE8D0] text-sm px-4 py-3 outline-none resize-none"
                 placeholder="description"
                 name = 'discreption' value={projectForm.discreption}
+                onChange={handleChange}
+              ></textarea>
+              <textarea
+                rows="4"
+                className="border border-[#3A3A3A] rounded-none bg-[#121212] text-[#EDE8D0] text-sm px-4 py-3 outline-none resize-none"
+                placeholder="tech"
+                name='tech' value={projectForm.tech}
                 onChange={handleChange}
               ></textarea>
               <input
@@ -180,8 +191,8 @@ const AdminPage = () => {
         </div>
       </section>
 
-    </div>
-  )
+    </div>);
+
 }
 
 export default AdminPage
