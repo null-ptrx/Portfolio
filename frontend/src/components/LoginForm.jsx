@@ -22,7 +22,7 @@ const LoginForm = () => {
   
   return (
     <div className='flex justify-center items-center h-full w-screen h-screen bg-[#1A1A1A]'>
-    <div className="w-full max-w-md border border-[#3A3A3A] bg-[#1A1A1A] p-8">
+    <div className="w-[calc(100%-2rem)] md:w-full max-w-md border border-[#3A3A3A] bg-[#1A1A1A] p-6 md:p-8">
       <h2 className="text-sm text-[#A8A296] mb-6">admin login</h2>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-1">

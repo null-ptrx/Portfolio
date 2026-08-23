@@ -78,7 +78,7 @@ const AdminPage = ({login}) => {
     <div className="min-h-screen bg-[#121212] text-[#EDE8D0]">
 
       {/* ── Header / Topbar ── */}
-      <header className="px-20 pt-10 pb-6">
+      <header className="px-4 md:px-20 pt-24 md:pt-10 pb-6">
         <div className="max-w-6xl mx-auto border border-[#3A3A3A] flex items-center justify-between px-6 py-4">
           <span className="text-sm text-[#EDE8D0]">admin panel</span>
           <button className="border border-[#3A3A3A] rounded-none px-4 py-2 text-sm text-[#EDE8D0] bg-transparent cursor-pointer">
@@ -88,7 +88,7 @@ const AdminPage = ({login}) => {
       </header>
 
       {/* ── Two-Column: Add Project + Contact Messages ── */}
-      <section className="px-20 pb-16">
+      <section className="px-4 md:px-20 pb-16">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-6">
 
           {/* Left Column — Add Project Form */}
@@ -168,7 +168,7 @@ const AdminPage = ({login}) => {
       </section>
 
       {/* ── Manage Projects (full-width) ── */}
-      <section className="px-20 pb-16">
+      <section className="px-4 md:px-20 pb-16">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-sm text-[#A8A296] mb-6">manage projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -177,7 +177,7 @@ const AdminPage = ({login}) => {
                 <h3 className="text-lg font-bold text-[#EDE8D0]">{project.name}</h3>
                 <p className="text-sm text-[#A8A296] leading-relaxed">{project.discreption}</p>
                 <div className="text-xs text-[#A8A296]">{project.tech}</div>
-                <div className="flex gap-3 mt-auto pt-4">
+                <div className="flex flex-wrap gap-2 md:gap-3 mt-auto pt-4">
                   <button className="border border-[#3A3A3A] rounded-none px-4 py-2 text-sm text-[#EDE8D0] bg-transparent cursor-pointer">
                     Edit
                   </button>

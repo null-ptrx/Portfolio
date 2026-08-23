@@ -65,24 +65,24 @@ const App = () => {
     
       <Navbar />
       {/* ── Hero ── */}
-      <section className="pt-20 px-20">
-        <div className="max-w-6xl mx-auto border border-[#3A3A3A] flex">
+      <section className="pt-24 md:pt-20 px-4 md:px-20">
+        <div className="max-w-6xl mx-auto border border-[#3A3A3A] flex flex-col md:flex-row">
           {/* Left — taglines + buttons */}
-          <div className="w-1/2 border-r border-[#3A3A3A] p-10 flex flex-col justify-center gap-6">
-            <h1 className="text-4xl font-bold leading-tight text-[#EDE8D0]">
+          <div className="w-full md:w-1/2 border-b md:border-b-0 md:border-r border-[#3A3A3A] p-6 md:p-10 flex flex-col justify-center gap-6">
+            <h1 className="text-2xl md:text-4xl font-bold leading-tight text-[#EDE8D0]">
               99% uptime,<br />100% curiosity.
             </h1>
-            <p className="text-xl text-[#A8A296]">My code has fewer bugs than my Arch install.</p>
-            <p className="text-lg text-[#A8A296]">Segfaults taught me more than tutorials did.</p>
-            <div className="flex gap-4 pt-4">
+            <p className="text-base md:text-xl text-[#A8A296]">My code has fewer bugs than my Arch install.</p>
+            <p className="text-sm md:text-lg text-[#A8A296]">Segfaults taught me more than tutorials did.</p>
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <button className="border border-[#3A3A3A] rounded-none px-6 py-3 text-sm text-[#EDE8D0] bg-transparent cursor-pointer">View Resume</button>
               <button className="border border-[#3A3A3A] rounded-none px-6 py-3 text-sm text-[#EDE8D0] bg-transparent cursor-pointer">Contact Me</button>
             </div>
           </div>
 
           {/* Right — terminal boot log */}
-          <div className="w-1/2 p-10 flex justify-center items-center">
-            <div className="border border-[#3A3A3A] bg-[#1A1A1A] rounded-none w-full p-6 flex flex-col gap-2 text-sm text-[#A8A296]">
+          <div className="w-full md:w-1/2 p-6 md:p-10 flex justify-center items-center">
+            <div className="border border-[#3A3A3A] bg-[#1A1A1A] rounded-none w-full p-4 md:p-6 flex flex-col gap-2 text-xs md:text-sm text-[#A8A296]">
               <span className="text-[#EDE8D0] text-xs mb-2">── boot.log ──</span>
               <span>[ OK ] Started Network Manager</span>
               <span>[ OK ] Mounted /home/nullptr</span>
@@ -97,10 +97,10 @@ const App = () => {
       </section>
 
       {/* ── Projects ── */}
-      <section id="projects" className="px-20 py-16">
+      <section id="projects" className="px-4 md:px-20 py-12 md:py-16">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-sm text-[#A8A296] mb-6">projects</h2>
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project) => (
               <ProjectCard
                 key={project.name}
@@ -114,10 +114,10 @@ const App = () => {
       </section>
 
       {/* ── Skills ── */}
-      <section id="skills" className="px-20 py-16">
+      <section id="skills" className="px-4 md:px-20 py-12 md:py-16">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-sm text-[#A8A296] mb-6">skills</h2>
-          <div className="border border-[#3A3A3A] bg-[#1A1A1A] rounded-none p-6">
+          <div className="border border-[#3A3A3A] bg-[#1A1A1A] rounded-none p-4 md:p-6">
             <div className="flex flex-wrap gap-3">
               {skills.map((skill) => (
                 <span
@@ -133,10 +133,10 @@ const App = () => {
       </section>
 
       {/* ── About ── */}
-      <section id="about" className="px-20 py-16">
+      <section id="about" className="px-4 md:px-20 py-12 md:py-16">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-sm text-[#A8A296] mb-6">about</h2>
-          <div className="border border-[#3A3A3A] bg-[#1A1A1A] rounded-none p-8">
+          <div className="border border-[#3A3A3A] bg-[#1A1A1A] rounded-none p-6 md:p-8">
             <p className="text-sm text-[#A8A296] leading-relaxed mb-4">
               I'm a full-stack developer who treats every project like a system to be debugged. I started with bare-metal Linux installs, broke enough things to learn how they work, and turned that stubbornness into a career building reliable web services.
             </p>
@@ -151,11 +151,11 @@ const App = () => {
       </section>
 
       {/* ── Contact ── */}
-      <section id="contact" className="px-20 py-16">
+      <section id="contact" className="px-4 md:px-20 py-12 md:py-16">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-sm text-[#A8A296] mb-6">contact</h2>
-          <div className="border border-[#3A3A3A] bg-[#1A1A1A] rounded-none p-8">
-            <form className="flex flex-col gap-4 max-w-lg">
+          <div className="border border-[#3A3A3A] bg-[#1A1A1A] rounded-none p-6 md:p-8">
+            <form className="flex flex-col gap-4 w-full md:max-w-lg">
               <div className="flex flex-col gap-1">
                 <label className="text-xs text-[#A8A296]">name</label>
                 <input
