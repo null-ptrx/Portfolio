@@ -75,7 +75,9 @@ const App = () => {
             <p className="text-base md:text-xl text-[#A8A296]">My code has fewer bugs than my Arch install.</p>
             <p className="text-sm md:text-lg text-[#A8A296]">Segfaults taught me more than tutorials did.</p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <button className="border border-[#3A3A3A] rounded-none px-6 py-3 text-sm text-[#EDE8D0] bg-transparent cursor-pointer">View Resume</button>
+              <button className="border border-[#3A3A3A] rounded-none px-6 py-3 text-sm text-[#EDE8D0] bg-transparent cursor-pointer"><a href="/Dharmveer_Singh_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                View Resume
+              </a></button>
               <button className="border border-[#3A3A3A] rounded-none px-6 py-3 text-sm text-[#EDE8D0] bg-transparent cursor-pointer">Contact Me</button>
             </div>
           </div>
@@ -107,6 +109,9 @@ const App = () => {
                 name={project.name}
                 description={project.description}
                 tech={project.tech}
+                github={project.github}
+                live={project.live}
+                docker={project.docker}
               />
             ))}
           </div>
