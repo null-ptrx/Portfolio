@@ -7,24 +7,11 @@ import cors from 'cors'
 
 const app = express();
 // app.use(cors());
-// app.use(cors({
-//     origin: 'https://portfolio-2fq5ua02p-ds331048-5589s-projects.vercel.app', // your actual Vercel URL
-// }));
-
-const allowedOrigins = [
-    'http://localhost:5173',
-    'https://portfolio-2fq5ua02p-ds331048-5589s-projects.vercel.app',
-];
-
 app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+    origin: 'https://portfolio-2fq5ua02p-ds331048-5589s-projects.vercel.app', // your actual Vercel URL
 }));
+
+
 app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Hello World!');
