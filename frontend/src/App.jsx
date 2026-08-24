@@ -78,7 +78,7 @@ const App = () => {
               <button className="border border-[#3A3A3A] rounded-none px-6 py-3 text-sm text-[#EDE8D0] bg-transparent cursor-pointer"><a href="/Dharmveer_Singh_Resume.pdf" target="_blank" rel="noopener noreferrer">
                 View Resume
               </a></button>
-              <button className="border border-[#3A3A3A] rounded-none px-6 py-3 text-sm text-[#EDE8D0] bg-transparent cursor-pointer">Contact Me</button>
+              <button className="border border-[#3A3A3A] rounded-none px-6 py-3 text-sm text-[#EDE8D0] bg-transparent cursor-pointer"><a href="#contact" className="no-underline text-[#A8A296]" onClick={() => setIsOpen(false)}>Contact Me</a></button>
             </div>
           </div>
 
