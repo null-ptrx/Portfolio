@@ -21,28 +21,29 @@ const LoginForm = () => {
   };
   
   return (
-    <div className='flex justify-center items-center h-full w-screen h-screen bg-[#1A1A1A]'>
-    <div className="w-[calc(100%-2rem)] md:w-full max-w-md border border-[#3A3A3A] bg-[#1A1A1A] p-6 md:p-8">
-      <h2 className="text-sm text-[#A8A296] mb-6">admin login</h2>
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-        <div className="flex flex-col gap-1">
-          <label className="text-xs text-[#A8A296]">email</label>
+    <div className='flex justify-center items-center h-full w-screen h-screen bg-[#0A0A0B]'>
+    <div className="w-[calc(100%-2rem)] md:w-full max-w-md border border-[#27272A] bg-[#141416] rounded-none shadow-[0_0_20px_rgba(59,130,246,0.15)] p-6 md:p-8">
+      <h2 className="text-2xl font-semibold text-[#FAFAFA] mb-2">Admin Login</h2>
+      <p className="text-sm text-[#A1A1AA] mb-8">Sign in to manage your portfolio</p>
+      <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-medium text-[#A1A1AA]">Email</label>
           <input
             onChange={handleChange}
             type="email"
-            className="border border-[#3A3A3A] rounded-none bg-[#121212] text-[#EDE8D0] text-sm px-4 py-3 outline-none"
+            className="border border-[#27272A] rounded-none bg-[#0A0A0B] text-[#FAFAFA] text-sm px-4 py-3 outline-none focus:border-[#3B82F6] transition-colors duration-200 placeholder-[#A1A1AA]/50"
             placeholder="admin@example.com"
             value={form.email}
             name="email"
             required
           />
         </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-xs text-[#A8A296]">password</label>
+        <div className="flex flex-col gap-1.5">
+          <label className="text-sm font-medium text-[#A1A1AA]">Password</label>
           <input
             onChange={handleChange}
             type="password"
-            className="border border-[#3A3A3A] rounded-none bg-[#121212] text-[#EDE8D0] text-sm px-4 py-3 outline-none"
+            className="border border-[#27272A] rounded-none bg-[#0A0A0B] text-[#FAFAFA] text-sm px-4 py-3 outline-none focus:border-[#3B82F6] transition-colors duration-200 placeholder-[#A1A1AA]/50"
             placeholder="••••••••"
             value={form.password}
             name="password"
@@ -51,9 +52,9 @@ const LoginForm = () => {
         </div>
         <button
           type="submit"
-          className="border border-[#3A3A3A] rounded-none px-6 py-3 text-sm text-[#EDE8D0] bg-transparent cursor-pointer w-full mt-4 hover:bg-[#2A2A2A] transition-colors"
+          className="bg-[#3B82F6] text-white rounded-none px-6 py-3 text-sm font-medium cursor-pointer w-full mt-2 hover:bg-[#60A5FA] transition-colors duration-200"
         >
-          authenticate
+          Authenticate
         </button>
       </form>
     </div>
