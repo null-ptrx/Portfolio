@@ -107,7 +107,7 @@ const App = () => {
               <ProjectCard
                 key={project.name}
                 name={project.name}
-                description={project.discription}
+                description={project.discreption}
                 tech={project.tech}
                 github={project.github}
                 live={project.live}
