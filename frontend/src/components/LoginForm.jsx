@@ -21,43 +21,63 @@ const LoginForm = () => {
   };
   
   return (
-    <div className='flex justify-center items-center h-full w-screen h-screen bg-[#0A0A0B]'>
-    <div className="w-[calc(100%-2rem)] md:w-full max-w-md border border-[#27272A] bg-[#141416] rounded-none shadow-[0_0_20px_rgba(59,130,246,0.15)] p-6 md:p-8">
-      <h2 className="text-2xl font-semibold text-[#FAFAFA] mb-2">Admin Login</h2>
-      <p className="text-sm text-[#A1A1AA] mb-8">Sign in to manage your portfolio</p>
-      <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-        <div className="flex flex-col gap-1.5">
-          <label className="text-sm font-medium text-[#A1A1AA]">Email</label>
-          <input
-            onChange={handleChange}
-            type="email"
-            className="border border-[#27272A] rounded-none bg-[#0A0A0B] text-[#FAFAFA] text-sm px-4 py-3 outline-none focus:border-[#3B82F6] transition-colors duration-200 placeholder-[#A1A1AA]/50"
-            placeholder="admin@example.com"
-            value={form.email}
-            name="email"
-            required
-          />
+    <div className='flex justify-center items-center w-screen h-screen bg-[#1a1b26] relative overflow-hidden'>
+      {/* Ambient glows */}
+      <div className="absolute top-1/3 left-1/3 w-72 h-72 bg-[#7aa2f7]/8 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-1/3 right-1/3 w-56 h-56 bg-[#bb9af7]/8 rounded-full blur-[80px] pointer-events-none"></div>
+
+      <div className="tn-terminal w-[calc(100%-2rem)] md:w-full max-w-md rounded-none animate-scale-in relative z-10 p-0">
+        {/* Title bar */}
+        <div className="flex items-center gap-2 px-4 py-3 border-b border-[#414868]/50">
+          <div className="w-3 h-3 rounded-full bg-[#f7768e]"></div>
+          <div className="w-3 h-3 rounded-full bg-[#e0af68]"></div>
+          <div className="w-3 h-3 rounded-full bg-[#9ece6a]"></div>
+          <span className="ml-3 text-xs text-[#565f89] font-mono">sudo authenticate</span>
         </div>
-        <div className="flex flex-col gap-1.5">
-          <label className="text-sm font-medium text-[#A1A1AA]">Password</label>
-          <input
-            onChange={handleChange}
-            type="password"
-            className="border border-[#27272A] rounded-none bg-[#0A0A0B] text-[#FAFAFA] text-sm px-4 py-3 outline-none focus:border-[#3B82F6] transition-colors duration-200 placeholder-[#A1A1AA]/50"
-            placeholder="••••••••"
-            value={form.password}
-            name="password"
-            required
-          />
+
+        <div className="p-6 md:p-8">
+          <h2 className="text-2xl font-bold text-[#c0caf5] mb-2 tracking-tight">Admin Login</h2>
+          <p className="text-sm text-[#565f89] font-mono mb-8">
+            <span className="text-[#414868]">//</span> sign in to manage your portfolio
+          </p>
+          <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+            <div className="flex flex-col gap-2">
+              <label className="tn-label">
+                <span className="text-[#414868] mr-1">//</span> email
+              </label>
+              <input
+                onChange={handleChange}
+                type="email"
+                className="tn-input rounded-none text-sm px-4 py-3"
+                placeholder="admin@example.com"
+                value={form.email}
+                name="email"
+                required
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="tn-label">
+                <span className="text-[#414868] mr-1">//</span> password
+              </label>
+              <input
+                onChange={handleChange}
+                type="password"
+                className="tn-input rounded-none text-sm px-4 py-3"
+                placeholder="••••••••"
+                value={form.password}
+                name="password"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="tn-btn-primary rounded-none px-6 py-3.5 text-sm cursor-pointer w-full mt-2"
+            >
+              Authenticate
+            </button>
+          </form>
         </div>
-        <button
-          type="submit"
-          className="bg-[#3B82F6] text-white rounded-none px-6 py-3 text-sm font-medium cursor-pointer w-full mt-2 hover:bg-[#60A5FA] transition-colors duration-200"
-        >
-          Authenticate
-        </button>
-      </form>
-    </div>
+      </div>
     </div>
   );
 };

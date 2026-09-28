@@ -125,15 +125,23 @@ const AdminPage = () => {
     //   return <LoginForm/>; 
     // }
     return ( 
-    <div className="min-h-screen bg-[#0A0A0B] text-[#FAFAFA]">
+    <div className="min-h-screen bg-[#1a1b26] text-[#c0caf5]">
 
       {/* ── Header / Topbar ── */}
-      <header className="px-4 md:px-20 pt-10 pb-8">
-        <div className="max-w-7xl mx-auto border border-[#27272A] bg-[#141416] rounded-none shadow-[0_0_20px_rgba(59,130,246,0.15)] flex items-center justify-between px-6 py-4">
-          <span className="text-lg font-semibold text-[#FAFAFA]">Admin Panel</span>
-          <button className="border border-[#27272A] rounded-none px-4 py-2 text-sm font-medium text-[#FAFAFA] bg-transparent cursor-pointer hover:border-[#3F3F46] hover:bg-[#1F1F23] transition-colors duration-200">
-            Logout
-          </button>
+      <header className="px-4 md:px-20 pt-10 pb-8 animate-fade-in-up">
+        <div className="max-w-7xl mx-auto tn-terminal rounded-none p-0">
+          <div className="flex items-center gap-2 px-4 py-3 border-b border-[#414868]/50">
+            <div className="w-3 h-3 rounded-full bg-[#f7768e]"></div>
+            <div className="w-3 h-3 rounded-full bg-[#e0af68]"></div>
+            <div className="w-3 h-3 rounded-full bg-[#9ece6a]"></div>
+            <span className="ml-3 text-xs text-[#565f89] font-mono">admin-panel</span>
+          </div>
+          <div className="flex items-center justify-between px-6 py-4">
+            <span className="text-lg font-bold text-[#c0caf5] tracking-tight">Admin Panel</span>
+            <button className="tn-btn-outline rounded-none px-4 py-2 text-sm font-mono cursor-pointer">
+              logout
+            </button>
+          </div>
         </div>
       </header>
 
@@ -142,87 +150,105 @@ const AdminPage = () => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8">
 
           {/* Left Column — Add Project Form */}
-          <div className="w-full md:w-1/2 border border-[#27272A] bg-[#141416] rounded-none shadow-[0_0_20px_rgba(59,130,246,0.15)] p-6 md:p-8">
-            <h2 className="text-xl font-semibold text-[#FAFAFA] mb-6">Add Project</h2>
-            <form className="flex flex-col gap-4">
-              <input
-                type="text"
-                className="border border-[#27272A] rounded-none bg-[#0A0A0B] text-[#FAFAFA] text-sm px-4 py-3 outline-none focus:border-[#3B82F6] transition-colors duration-200 placeholder-[#A1A1AA]/50"
-                placeholder="Project name"
-                name = 'name' value = {projectForm.name}
-                onChange = {handleChange}
-              />
-              <textarea
-                rows="4"
-                className="border border-[#27272A] rounded-none bg-[#0A0A0B] text-[#FAFAFA] text-sm px-4 py-3 outline-none resize-none focus:border-[#3B82F6] transition-colors duration-200 placeholder-[#A1A1AA]/50"
-                placeholder="Description"
-                name = 'discreption' value={projectForm.discreption}
-                onChange={handleChange}
-              ></textarea>
-              <textarea
-                rows="4"
-                className="border border-[#27272A] rounded-none bg-[#0A0A0B] text-[#FAFAFA] text-sm px-4 py-3 outline-none resize-none focus:border-[#3B82F6] transition-colors duration-200 placeholder-[#A1A1AA]/50"
-                placeholder="Tech stack"
-                name='tech' value={projectForm.tech}
-                onChange={handleChange}
-              ></textarea>
-              <input
-                type="text"
-                className="border border-[#27272A] rounded-none bg-[#0A0A0B] text-[#FAFAFA] text-sm px-4 py-3 outline-none focus:border-[#3B82F6] transition-colors duration-200 placeholder-[#A1A1AA]/50"
-                placeholder="GitHub link"
-                onChange={handleChange}
-                name='github' value={projectForm.github}
-              />
-              <input
-                type="text"
-                className="border border-[#27272A] rounded-none bg-[#0A0A0B] text-[#FAFAFA] text-sm px-4 py-3 outline-none focus:border-[#3B82F6] transition-colors duration-200 placeholder-[#A1A1AA]/50"
-                placeholder="Docker link"
-                onChange={handleChange}
-                name='docker' value={projectForm.docker}
-              />
-              <input
-                type="text"
-                className="border border-[#27272A] rounded-none bg-[#0A0A0B] text-[#FAFAFA] text-sm px-4 py-3 outline-none focus:border-[#3B82F6] transition-colors duration-200 placeholder-[#A1A1AA]/50"
-                placeholder="Live link"
-                onChange={handleChange}
-                name='live' value={projectForm.live}
-              />
-              <button
-                type="button"
-                className="bg-[#3B82F6] text-white rounded-none px-6 py-3 text-sm font-medium cursor-pointer self-start mt-2 hover:bg-[#60A5FA] transition-colors duration-200"
-                onClick={handleSubmit}
-              >
-                Add Project
-              </button>
-            </form>
+          <div className="w-full md:w-1/2 tn-terminal rounded-none p-0 animate-fade-in-left">
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-[#414868]/50">
+              <div className="w-3 h-3 rounded-full bg-[#f7768e]"></div>
+              <div className="w-3 h-3 rounded-full bg-[#e0af68]"></div>
+              <div className="w-3 h-3 rounded-full bg-[#9ece6a]"></div>
+              <span className="ml-3 text-xs text-[#565f89] font-mono">new-project.sh</span>
+            </div>
+            <div className="p-6 md:p-8">
+              <h2 className="text-xl font-bold text-[#c0caf5] mb-6 tracking-tight">Add Project</h2>
+              <form className="flex flex-col gap-4">
+                <input
+                  type="text"
+                  className="tn-input rounded-none text-sm px-4 py-3"
+                  placeholder="Project name"
+                  name = 'name' value = {projectForm.name}
+                  onChange = {handleChange}
+                />
+                <textarea
+                  rows="4"
+                  className="tn-input rounded-none text-sm px-4 py-3 resize-none"
+                  placeholder="Description"
+                  name = 'discreption' value={projectForm.discreption}
+                  onChange={handleChange}
+                ></textarea>
+                <textarea
+                  rows="4"
+                  className="tn-input rounded-none text-sm px-4 py-3 resize-none"
+                  placeholder="Tech stack"
+                  name='tech' value={projectForm.tech}
+                  onChange={handleChange}
+                ></textarea>
+                <input
+                  type="text"
+                  className="tn-input rounded-none text-sm px-4 py-3"
+                  placeholder="GitHub link"
+                  onChange={handleChange}
+                  name='github' value={projectForm.github}
+                />
+                <input
+                  type="text"
+                  className="tn-input rounded-none text-sm px-4 py-3"
+                  placeholder="Docker link"
+                  onChange={handleChange}
+                  name='docker' value={projectForm.docker}
+                />
+                <input
+                  type="text"
+                  className="tn-input rounded-none text-sm px-4 py-3"
+                  placeholder="Live link"
+                  onChange={handleChange}
+                  name='live' value={projectForm.live}
+                />
+                <button
+                  type="button"
+                  className="tn-btn-primary rounded-none px-6 py-3.5 text-sm cursor-pointer self-start mt-2"
+                  onClick={handleSubmit}
+                >
+                  Add Project
+                </button>
+              </form>
+            </div>
           </div>
 
           {/* Right Column — Contact Messages */}
-          <div className="w-full md:w-1/2 border border-[#27272A] bg-[#141416] rounded-none shadow-[0_0_20px_rgba(59,130,246,0.15)] p-6 md:p-8">
-            <h2 className="text-xl font-semibold text-[#FAFAFA] mb-6">Contact Messages</h2>
-            <div className="flex flex-col gap-4">
-              {loading ? (
-                <div className="border border-[#3A3A3A] bg-[#1A1A1A] rounded-none p-4 flex flex-col gap-2 text-xs md:text-sm font-mono text-[#A8A296] transition-opacity duration-300">
-                  {bootLines >= 1 && <div><span className="text-[#22C55E]">[ OK ]</span> Initializing connection...</div>}
-                  {bootLines >= 2 && <div><span className="text-[#22C55E]">[ OK ]</span> Waking up backend service...</div>}
-                  {bootLines >= 3 && <div><span className="text-[#22C55E]">[ OK ]</span> Connecting to database...</div>}
-                  {bootLines >= 4 && <div><span className="text-[#22C55E]">[ OK ]</span> Fetching messages...</div>}
-                  <div><span className="animate-pulse">▊</span></div>
-                </div>
-              ) : contactMess.length === 0 ? (
-                <p className="text-sm text-[#A1A1AA] font-mono">// no messages yet</p>
-              ) : (
-                contactMess.map((msg, i) => (
-                  <div key={i} className="border border-[#27272A] rounded-none bg-[#0A0A0B] p-4 flex flex-col gap-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-[#FAFAFA]">{msg.name}</span>
-                      <span className="text-xs text-[#A1A1AA]">{timeAgo(msg.createdAt)}</span>
-                    </div>
-                    <span className="text-xs text-[#3B82F6]">{msg.email}</span>
-                    <p className="text-sm text-[#A1A1AA] leading-relaxed">{msg.message}</p>
+          <div className="w-full md:w-1/2 tn-terminal rounded-none p-0 animate-fade-in-right delay-200">
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-[#414868]/50">
+              <div className="w-3 h-3 rounded-full bg-[#f7768e]"></div>
+              <div className="w-3 h-3 rounded-full bg-[#e0af68]"></div>
+              <div className="w-3 h-3 rounded-full bg-[#9ece6a]"></div>
+              <span className="ml-3 text-xs text-[#565f89] font-mono">messages.log</span>
+            </div>
+            <div className="p-6 md:p-8">
+              <h2 className="text-xl font-bold text-[#c0caf5] mb-6 tracking-tight">Contact Messages</h2>
+              <div className="flex flex-col gap-4">
+                {loading ? (
+                  <div className="border border-[#414868] bg-[#1a1b26] rounded-none p-4 flex flex-col gap-2 text-xs md:text-sm font-mono text-[#a9b1d6] transition-opacity duration-300">
+                    {bootLines >= 1 && <div className="animate-fade-in-up"><span className="text-[#9ece6a]">[ OK ]</span> Initializing connection...</div>}
+                    {bootLines >= 2 && <div className="animate-fade-in-up"><span className="text-[#9ece6a]">[ OK ]</span> Waking up backend service...</div>}
+                    {bootLines >= 3 && <div className="animate-fade-in-up"><span className="text-[#9ece6a]">[ OK ]</span> Connecting to database...</div>}
+                    {bootLines >= 4 && <div className="animate-fade-in-up"><span className="text-[#9ece6a]">[ OK ]</span> Fetching messages...</div>}
+                    <div><span className="terminal-cursor text-[#7aa2f7]">▊</span></div>
                   </div>
-                ))
-              )}
+                ) : contactMess.length === 0 ? (
+                  <p className="text-sm text-[#565f89] font-mono">
+                    <span className="text-[#414868]">//</span> no messages yet
+                  </p>
+                ) : (
+                  contactMess.map((msg, i) => (
+                    <div key={i} className="tn-card rounded-none p-4 flex flex-col gap-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-semibold text-[#c0caf5]">{msg.name}</span>
+                        <span className="text-xs text-[#565f89] font-mono">{timeAgo(msg.createdAt)}</span>
+                      </div>
+                      <span className="text-xs text-[#7aa2f7] font-mono">{msg.email}</span>
+                      <p className="text-sm text-[#a9b1d6] leading-relaxed">{msg.message}</p>
+                    </div>
+                  ))
+                )}
+              </div>
             </div>
           </div>
 
@@ -232,24 +258,32 @@ const AdminPage = () => {
       {/* ── Manage Projects (full-width) ── */}
       <section className="px-4 md:px-20 pb-16 md:pb-24">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-xl font-semibold text-[#FAFAFA] mb-8">Manage Projects</h2>
+          <h2 className="text-xl font-bold text-[#c0caf5] mb-8 tracking-tight tn-section-heading">Manage Projects</h2>
           {loadingProjects ? (
-            <p className="text-sm text-[#A1A1AA]">Loading projects...</p>
+            <div className="flex items-center gap-3 text-sm text-[#565f89] font-mono">
+              <span className="terminal-cursor text-[#7aa2f7]">▊</span>
+              <span>loading projects...</span>
+            </div>
           ) : projects.length === 0 ? (
-            <p className="text-sm text-[#A1A1AA]">No projects yet.</p>
+            <p className="text-sm text-[#565f89] font-mono">
+              <span className="text-[#414868]">//</span> no projects yet.
+            </p>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {projects.map((project, i) => (
-                <div key={i} className="border border-[#27272A] bg-[#141416] rounded-none shadow-[0_0_20px_rgba(59,130,246,0.15)] p-6 flex flex-col gap-4 hover:border-[#3F3F46] hover:bg-[#1F1F23] transition-colors duration-200">
-                  <h3 className="text-lg font-semibold text-[#FAFAFA]">{project.name}</h3>
-                  <p className="text-sm text-[#A1A1AA] leading-relaxed">{project.discreption}</p>
-                  <div className="text-xs text-[#A1A1AA]">{project.tech}</div>
-                  <div className="flex flex-wrap gap-3 mt-auto pt-4">
-                    <button className="border border-[#27272A] rounded-none px-4 py-2 text-sm font-medium text-[#FAFAFA] bg-transparent cursor-pointer hover:border-[#3F3F46] hover:bg-[#1F1F23] transition-colors duration-200" onClick = {()=> handleEdit(project._id)}>
-                      Edit
+                <div key={i} className="tn-card rounded-none p-6 flex flex-col gap-4">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#7aa2f7]"></span>
+                    <h3 className="text-lg font-semibold text-[#c0caf5] tracking-tight">{project.name}</h3>
+                  </div>
+                  <p className="text-sm text-[#a9b1d6] leading-relaxed">{project.discreption}</p>
+                  <div className="text-xs text-[#9aa5ce] font-mono">{project.tech}</div>
+                  <div className="flex flex-wrap gap-3 mt-auto pt-4 border-t border-[#414868]/40">
+                    <button className="tn-btn-outline rounded-none px-4 py-2 text-xs font-mono cursor-pointer" onClick = {()=> handleEdit(project._id)}>
+                      edit
                     </button>
-                    <button className="border border-[#EF4444]/30 rounded-none px-4 py-2 text-sm font-medium text-[#EF4444] bg-transparent cursor-pointer hover:bg-[#EF4444]/10 hover:border-[#EF4444]/50 transition-colors duration-200" onClick = {() => handleDelete(project._id)} >
-                      Delete
+                    <button className="tn-btn-danger rounded-none px-4 py-2 text-xs font-mono cursor-pointer" onClick = {() => handleDelete(project._id)} >
+                      delete
                     </button>
                   </div>
                 </div>
