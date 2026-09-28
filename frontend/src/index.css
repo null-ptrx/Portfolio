@@ -354,13 +354,17 @@ code, pre, .font-mono {
 /* ── Input Styles ── */
 
 .tn-input {
-  background: var(--tn-bg);
-  border: none;
+  background-color: var(--tn-bg) !important;
+  border: 1px solid var(--tn-border);
   color: var(--tn-fg);
   font-family: 'Inter', sans-serif;
   transition: all 0.25s ease;
   outline: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tn-input:hover {
+  border-color: var(--tn-border-hover);
 }
 
 .tn-input::placeholder {
@@ -369,6 +373,7 @@ code, pre, .font-mono {
 }
 
 .tn-input:focus {
+  border-color: var(--tn-blue);
   box-shadow:
     0 2px 12px rgba(0, 0, 0, 0.4),
     0 0 0 2px rgba(122, 162, 247, 0.25);

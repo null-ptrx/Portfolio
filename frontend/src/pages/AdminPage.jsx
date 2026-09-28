@@ -129,19 +129,11 @@ const AdminPage = () => {
 
       {/* ── Header / Topbar ── */}
       <header className="px-4 md:px-20 pt-10 pb-8 animate-fade-in-up">
-        <div className="max-w-7xl mx-auto tn-terminal rounded-none p-0">
-          <div className="flex items-center gap-2 px-4 py-3 border-b border-[#414868]/50">
-            <div className="w-3 h-3 rounded-full bg-[#f7768e]"></div>
-            <div className="w-3 h-3 rounded-full bg-[#e0af68]"></div>
-            <div className="w-3 h-3 rounded-full bg-[#9ece6a]"></div>
-            <span className="ml-3 text-xs text-[#565f89] font-mono">admin-panel</span>
-          </div>
-          <div className="flex items-center justify-between px-6 py-4">
-            <span className="text-lg font-bold text-[#c0caf5] tracking-tight">Admin Panel</span>
-            <button className="tn-btn-outline rounded-none px-4 py-2 text-sm font-mono cursor-pointer">
-              logout
-            </button>
-          </div>
+        <div className="max-w-7xl mx-auto bg-[#16161e] rounded-lg shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-6 flex items-center justify-between">
+          <span className="text-xl font-bold text-[#c0caf5] tracking-tight">Admin Panel</span>
+          <button className="tn-btn-outline rounded-lg px-5 py-2.5 text-sm font-medium cursor-pointer">
+            Logout
+          </button>
         </div>
       </header>
 
@@ -150,79 +142,64 @@ const AdminPage = () => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8">
 
           {/* Left Column — Add Project Form */}
-          <div className="w-full md:w-1/2 tn-terminal rounded-none p-0 animate-fade-in-left">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-[#414868]/50">
-              <div className="w-3 h-3 rounded-full bg-[#f7768e]"></div>
-              <div className="w-3 h-3 rounded-full bg-[#e0af68]"></div>
-              <div className="w-3 h-3 rounded-full bg-[#9ece6a]"></div>
-              <span className="ml-3 text-xs text-[#565f89] font-mono">new-project.sh</span>
-            </div>
-            <div className="p-6 md:p-8">
-              <h2 className="text-xl font-bold text-[#c0caf5] mb-6 tracking-tight">Add Project</h2>
+          <div className="w-full md:w-1/2 bg-[#16161e] rounded-lg shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-6 md:p-8 animate-fade-in-up">
+            <h2 className="text-xl font-bold text-[#c0caf5] mb-6 tracking-tight">Add Project</h2>
               <form className="flex flex-col gap-4">
                 <input
                   type="text"
-                  className="tn-input rounded-none text-sm px-4 py-3"
+                  className="tn-input rounded-lg text-sm px-4 py-3"
                   placeholder="Project name"
-                  name = 'name' value = {projectForm.name}
-                  onChange = {handleChange}
+                  name='name' value={projectForm.name}
+                  onChange={handleChange}
                 />
                 <textarea
                   rows="4"
-                  className="tn-input rounded-none text-sm px-4 py-3 resize-none"
+                  className="tn-input rounded-lg text-sm px-4 py-3 resize-none"
                   placeholder="Description"
-                  name = 'discreption' value={projectForm.discreption}
+                  name='discreption' value={projectForm.discreption}
                   onChange={handleChange}
                 ></textarea>
                 <textarea
                   rows="4"
-                  className="tn-input rounded-none text-sm px-4 py-3 resize-none"
+                  className="tn-input rounded-lg text-sm px-4 py-3 resize-none"
                   placeholder="Tech stack"
                   name='tech' value={projectForm.tech}
                   onChange={handleChange}
                 ></textarea>
                 <input
                   type="text"
-                  className="tn-input rounded-none text-sm px-4 py-3"
+                  className="tn-input rounded-lg text-sm px-4 py-3"
                   placeholder="GitHub link"
                   onChange={handleChange}
                   name='github' value={projectForm.github}
                 />
                 <input
                   type="text"
-                  className="tn-input rounded-none text-sm px-4 py-3"
+                  className="tn-input rounded-lg text-sm px-4 py-3"
                   placeholder="Docker link"
                   onChange={handleChange}
                   name='docker' value={projectForm.docker}
                 />
                 <input
                   type="text"
-                  className="tn-input rounded-none text-sm px-4 py-3"
+                  className="tn-input rounded-lg text-sm px-4 py-3"
                   placeholder="Live link"
                   onChange={handleChange}
                   name='live' value={projectForm.live}
                 />
                 <button
                   type="button"
-                  className="tn-btn-primary rounded-none px-6 py-3.5 text-sm cursor-pointer self-start mt-2"
+                  className="tn-btn-primary rounded-lg px-6 py-3.5 text-sm cursor-pointer self-start mt-2"
                   onClick={handleSubmit}
                 >
                   Add Project
                 </button>
               </form>
-            </div>
           </div>
 
           {/* Right Column — Contact Messages */}
-          <div className="w-full md:w-1/2 tn-terminal rounded-none p-0 animate-fade-in-right delay-200">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-[#414868]/50">
-              <div className="w-3 h-3 rounded-full bg-[#f7768e]"></div>
-              <div className="w-3 h-3 rounded-full bg-[#e0af68]"></div>
-              <div className="w-3 h-3 rounded-full bg-[#9ece6a]"></div>
-              <span className="ml-3 text-xs text-[#565f89] font-mono">messages.log</span>
-            </div>
-            <div className="p-6 md:p-8">
-              <h2 className="text-xl font-bold text-[#c0caf5] mb-6 tracking-tight">Contact Messages</h2>
+          <div className="w-full md:w-1/2 bg-[#16161e] rounded-lg shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-6 md:p-8 animate-fade-in-up delay-200">
+            <h2 className="text-xl font-bold text-[#c0caf5] mb-6 tracking-tight">Contact Messages</h2>
               <div className="flex flex-col gap-4">
                 {loading ? (
                   <div className="border border-[#414868] bg-[#1a1b26] rounded-none p-4 flex flex-col gap-2 text-xs md:text-sm font-mono text-[#a9b1d6] transition-opacity duration-300">
@@ -249,7 +226,6 @@ const AdminPage = () => {
                   ))
                 )}
               </div>
-            </div>
           </div>
 
         </div>
@@ -271,7 +247,7 @@ const AdminPage = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {projects.map((project, i) => (
-                <div key={i} className="tn-card rounded-none p-6 flex flex-col gap-4">
+                <div key={i} className="bg-[#16161e] rounded-lg shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-6 flex flex-col gap-4">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-[#7aa2f7]"></span>
                     <h3 className="text-lg font-semibold text-[#c0caf5] tracking-tight">{project.name}</h3>
@@ -279,11 +255,11 @@ const AdminPage = () => {
                   <p className="text-sm text-[#a9b1d6] leading-relaxed">{project.discreption}</p>
                   <div className="text-xs text-[#9aa5ce] font-mono">{project.tech}</div>
                   <div className="flex flex-wrap gap-3 mt-auto pt-4 border-t border-[#414868]/40">
-                    <button className="tn-btn-outline rounded-none px-4 py-2 text-xs font-mono cursor-pointer" onClick = {()=> handleEdit(project._id)}>
-                      edit
+                    <button className="tn-btn-outline rounded-lg px-4 py-2 text-xs font-mono cursor-pointer" onClick = {()=> handleEdit(project._id)}>
+                      Edit
                     </button>
-                    <button className="tn-btn-danger rounded-none px-4 py-2 text-xs font-mono cursor-pointer" onClick = {() => handleDelete(project._id)} >
-                      delete
+                    <button className="tn-btn-danger rounded-lg px-4 py-2 text-xs font-mono cursor-pointer" onClick = {() => handleDelete(project._id)} >
+                      Delete
                     </button>
                   </div>
                 </div>
