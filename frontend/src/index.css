@@ -268,10 +268,27 @@ code, pre, .font-mono {
 
 .tn-terminal {
   background: var(--tn-bg-dark);
-  border: 1px solid var(--tn-border);
+  border: none;
   font-family: 'JetBrains Mono', monospace;
   position: relative;
   overflow: hidden;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(122, 162, 247, 0.06);
+  animation: terminalShadowPulse 4s ease-in-out infinite;
+}
+
+@keyframes terminalShadowPulse {
+  0%, 100% {
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.4),
+      0 0 40px rgba(122, 162, 247, 0.06);
+  }
+  50% {
+    box-shadow:
+      0 6px 32px rgba(0, 0, 0, 0.5),
+      0 0 60px rgba(122, 162, 247, 0.12);
+  }
 }
 
 .tn-terminal::before {
@@ -338,11 +355,12 @@ code, pre, .font-mono {
 
 .tn-input {
   background: var(--tn-bg);
-  border: 1px solid var(--tn-border);
+  border: none;
   color: var(--tn-fg);
   font-family: 'Inter', sans-serif;
   transition: all 0.25s ease;
   outline: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .tn-input::placeholder {
@@ -351,8 +369,9 @@ code, pre, .font-mono {
 }
 
 .tn-input:focus {
-  border-color: var(--tn-blue);
-  box-shadow: 0 0 0 3px rgba(122, 162, 247, 0.12);
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.4),
+    0 0 0 2px rgba(122, 162, 247, 0.25);
 }
 
 /* ── Gradient Text ── */
@@ -627,4 +646,60 @@ code, pre, .font-mono {
   font-size: 8px;
   letter-spacing: 2px;
   color: var(--tn-fg-muted);
+}
+
+/* ── Skill Cards ── */
+
+.skill-card-wrapper {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  width: 100%;
+}
+
+.skill-card-wrapper.skill-card-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2.5rem 1.5rem;
+  background: rgba(36, 40, 59, 0.4);
+  border-radius: 12px;
+  cursor: default;
+  transition: background 0.3s ease;
+  width: 100%;
+  min-height: 180px;
+}
+
+.skill-card:hover {
+  background: rgba(36, 40, 59, 0.7);
+}
+
+.skill-card-icon {
+  color: var(--tn-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.skill-card:hover .skill-card-icon {
+  transform: scale(1.1);
+}
+
+.skill-card-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--tn-fg-dark);
+  transition: color 0.3s ease;
+}
+
+.skill-card:hover .skill-card-name {
+  color: var(--tn-fg);
 }
