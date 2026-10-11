@@ -416,7 +416,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .les:hover .bar{ transform:scaleX(1); }
 
 /* — chapter IV: eternity */
-.fin{ min-height:100svh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; }
+.fin{ min-height:100svh; display:flex; flex-direction:column; justify-content:center; align-items:flex-end; text-align:center; }
 .fin .eyebrow{ margin-bottom:26px; }
 .fin h2{ font-size:clamp(38px,7.4vw,124px); line-height:.94; letter-spacing:-.03em; text-transform:uppercase; }
 .fin p{ max-width:44ch; margin:26px auto 0; }
@@ -620,6 +620,7 @@ body[data-layout-closing="b"] .fin h2{
 }
 body[data-layout-closing="b"] .fin p{ grid-column:1; grid-row:2; margin:0; }
 body[data-layout-closing="b"] .fin .cta{ grid-column:1; grid-row:3; justify-self:start; margin-top:4px; }
+body[data-layout-closing="b"] .fin .fin-form{ grid-column:1; grid-row:2 / 4; }
 
 /* — footer B · manifesto: the statement leads, the navigation becomes a
      compact ruled index beneath it. */
@@ -1032,8 +1033,8 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     <span class="k"><b>02</b> &mdash; Skills</span><span class="rule"></span><span class="k">./skills</span>
   </div>
   <div class="cur-head" data-rv="up">
-    <h2 class="display h-sec">The stack I reach for.</h2>
-    <p class="body-lg">Tools I use day-to-day to build, deploy, and debug reliable systems. No magic frameworks — just things that work at 3am.</p>
+    <h2 class="display h-sec" style="text-align: center;">The stack I reach for.</h2>
+    <p class="body-lg" style="text-align: center; max-width: 800px; margin: 24px auto 0; color: rgba(255,255,255,0.95); font-weight: 400; text-shadow: 0 2px 12px rgba(0,0,0,0.8); font-size: clamp(1.25rem, 2vw, 1.75rem); line-height: 1.6; position: relative; z-index: 100;">Tools I use day-to-day to build, deploy, and debug reliable systems. No magic frameworks — just things that work at 3am.</p>
   </div>
   <div class="cur" id="cur-skills" data-rv="up">
     <div class="les" data-cursor>
@@ -1199,11 +1200,11 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
       <img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/35388445965f970fa28af333/sakura-branch.webp" alt="" width="1536" height="1024" loading="lazy" decoding="async">
     </span>
   </div>
-  <div style="width:100%;max-width:640px;text-align:left;">
-    <div class="eyebrow" data-rv="fade" style="text-align:left;">04 &mdash; Contact</div>
-    <h2 class="display" data-rv="up">Get in touch.</h2>
-    <p class="body-lg" data-rv="up" style="text-align:left;">Open to work, collaboration, or just talking about init systems. Segfaults taught me more than tutorials did.</p>
-    <form id="contact-form" data-rv="up" style="display:flex;flex-direction:column;gap:20px;margin-top:36px;" onsubmit="handleContact(event)">
+  <div class="eyebrow" data-rv="fade">04 &mdash; Contact</div>
+  <h2 class="display" data-rv="up">Get in touch.</h2>
+  <p class="body-lg" data-rv="up">Open to work, collaboration, or just talking about init systems. Segfaults taught me more than tutorials did.</p>
+  <div class="fin-form" style="margin-top: 80px;">
+    <form id="contact-form" data-rv="up" style="display:flex;flex-direction:column;gap:20px;" onsubmit="handleContact(event)">
       <div style="display:flex;flex-direction:column;gap:8px;">
         <label style="display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);line-height:1;">Name</label>
         <input name="name" type="text" required placeholder="Your name"
@@ -1228,7 +1229,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
         </button>
       </div>
     </form>
-    <p style="margin-top:28px;font-size:13px;color:var(--muted);text-align:left;">Or reach me directly: <a href="mailto:ds331048@gmail.com" style="color:var(--bone-dim);">ds331048@gmail.com</a> &middot; <a href="https://github.com/null-ptrx" target="_blank" style="color:var(--bone-dim);">github.com/null-ptrx</a></p>
+    <p style="margin-top:28px;font-size:13px;color:var(--muted);">Or reach me directly: <a href="mailto:ds331048@gmail.com" style="color:var(--bone-dim);">ds331048@gmail.com</a> &middot; <a href="https://github.com/null-ptrx" target="_blank" style="color:var(--bone-dim);">github.com/null-ptrx</a></p>
   </div>
 </section>
 
