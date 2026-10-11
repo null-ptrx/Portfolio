@@ -2,7 +2,8 @@ import React from 'react'
 
 const App = () => {
   const api = import.meta.env.VITE_API_URL || ''
-  const src = `/landing-pages/portfolio.html${api ? `?api=${encodeURIComponent(api)}` : ''}`
+  const web3Key = import.meta.env.VITE_WEB3FORMS_KEY || ''
+  const src = `/landing-pages/portfolio.html${api ? `?api=${encodeURIComponent(api)}` : ''}${web3Key ? `&apikey=${web3Key}` : ''}`
 
   return (
     <iframe

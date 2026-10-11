@@ -1222,7 +1222,10 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
         </button>
       </div>
     </form>
-    <p style="margin-top:28px;font-size:13px;color:var(--muted);">Or reach me directly: <a href="mailto:ds331048@gmail.com" style="color:var(--bone-dim);">ds331048@gmail.com</a> &middot; <a href="https://github.com/null-ptrx" target="_blank" style="color:var(--bone-dim);">github.com/null-ptrx</a></p>
+    <p style="margin-top:28px;font-size:13px;color:var(--muted); display: flex; gap: 12px;">
+      <a href="mailto:dharmveer.97@outlook.com" class="cta" style="padding: 10px 18px; border: 1px solid var(--bone-dim); color: var(--bone); font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;">EMAIL ME ↗</a>
+      <a href="https://github.com/null-ptrx" target="_blank" rel="noopener noreferrer" class="cta" style="padding: 10px 18px; border: 1px solid var(--bone-dim); color: var(--bone); font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;">GITHUB ↗</a>
+    </p>
   </div>
 </section>
 
@@ -4983,29 +4986,42 @@ else addEventListener('DOMContentLoaded', boot);
     var btn = document.getElementById('contact-btn');
     var lbl = document.getElementById('contact-btn-label');
 
-    var formData = new FormData(form);
-    var apiKey = new URLSearchParams(window.location.search).get('apikey');
-    formData.append("access_key", apiKey);
+    var apiKey = import.meta.env.VITE_WEB3FORMS_KEY;
+    var data = {
+        access_key: apiKey,
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value,
+        subject: "New message from portfolio",
+        from_name: "Portfolio Contact",
+        botcheck: form.botcheck.value
+    };
+
+    if (!data.name || !data.email || data.message.length < 10) {
+        alert("Please fill all fields (message min 10 chars).");
+        return;
+    }
 
     lbl.textContent = 'Sending…';
     btn.disabled = true;
 
     fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      body: formData,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
     })
     .then(function(r) { return r.json(); })
     .then(function(data) {
       if (data.success) {
-        lbl.textContent = '+ Sent';
+        lbl.textContent = 'MESSAGE SENT ✓';
         form.reset();
-        setTimeout(function() { lbl.textContent = 'Send message'; btn.disabled = false; }, 3000);
+        setTimeout(function() { lbl.textContent = 'Send message'; btn.disabled = false; }, 4000);
       } else {
         throw new Error(data.message);
       }
     })
     .catch(function(err) {
-      lbl.textContent = 'Error — try again';
+      lbl.textContent = 'ERROR — TRY AGAIN';
       btn.disabled = false;
       console.error(err);
     });
