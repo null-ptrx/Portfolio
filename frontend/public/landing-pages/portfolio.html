@@ -1045,10 +1045,17 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   <div class="sec-head" data-rv="fade">
     <span class="k"><b>02</b> &mdash; Skills</span><span class="rule"></span><span class="k">./skills</span>
   </div>
-  <div class="cur-head" data-rv="up" style="display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: clamp(0.5rem, 1vh, 1rem); margin-bottom: clamp(4rem, 10vh, 8rem);">
+  <div class="cur-head" data-rv="up" style="display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: clamp(1rem, 3vh, 2rem); margin-bottom: 2rem;">
     <h2 class="display h-sec" style="text-align: center;">The stack I reach for.</h2>
-    <p class="body-lg" style="text-align: center; width: min(800px, 90vw); margin: 24px auto 0; color: #efe6e1; font-weight: 400; text-shadow: 0 2px 16px rgba(0,0,0,0.7), 0 0 24px rgba(200,30,40,0.25); font-size: clamp(1.25rem, 2vw, 1.75rem); line-height: 1.6; position: relative; z-index: 100; text-wrap: balance;">Tools I use day-to-day to build, deploy, and debug reliable systems. No magic frameworks — just things that work at <span style="color: var(--vermilion);">3am</span>.</p>
+    <p class="body-lg" style="text-align: center; width: min(1200px, 92vw); margin: clamp(1rem, 3vh, 2rem) auto 2rem; color: #efe6e1; font-weight: 400; text-shadow: 0 2px 16px rgba(0,0,0,0.7), 0 0 24px rgba(200,30,40,0.25); font-size: clamp(1rem, 1.6vw, 1.5rem); line-height: 1.6; position: relative; z-index: 100; white-space: normal; text-wrap: balance;">
+      Tools I use day-to-day to build, deploy, and debug reliable systems. No magic frameworks — just things that work at <span style="color: var(--vermilion);">3am</span>.
+    </p>
   </div>
+  <style>
+    @media (min-width: 1024px) {
+      .cur-head .body-lg { white-space: nowrap; }
+    }
+  </style>
   <div class="cur" id="cur-skills" data-rv="up">
     <div class="les" data-cursor>
       <span class="k">01</span>
