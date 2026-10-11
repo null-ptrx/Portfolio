@@ -442,6 +442,14 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .cta:hover i{ transform:none; }
 .cta:hover svg path{ stroke:#05070a; }
 
+/* — contact links (under form) */
+.contact-link{
+  text-decoration:none; padding:8px 16px; border:1px solid var(--muted);
+  color:var(--bone-dim); font-size:12px; letter-spacing:.1em;
+  text-transform:uppercase; transition:all .2s; font-family:inherit;
+}
+.contact-link:hover{ border-color:crimson; color:crimson; }
+
 /* — footer */
 .foot{ position:relative; padding:clamp(50px,8vh,96px) var(--pad) clamp(26px,4vh,40px);
   border-top:1px solid var(--line-soft); }
@@ -1196,36 +1204,34 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   <h2 class="display" data-rv="up">Get in touch.</h2>
   <p class="body-lg" data-rv="up">Open to work, collaboration, or just talking about init systems. Segfaults taught me more than tutorials did.</p>
   <div class="fin-form" style="margin-top: 80px;">
-    <form id="contact-form" data-rv="up" style="display:flex;flex-direction:column;gap:20px;" onsubmit="handleContact(event)">
-      <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+    <form id="contact-form" data-rv="up" style="display:flex;flex-direction:column;gap:20px;">
+      <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
       <div style="display:flex;flex-direction:column;gap:8px;">
         <label style="display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);line-height:1;">Name</label>
         <input name="name" type="text" required placeholder="Your name"
-          style="display:block;width:100%;background:rgba(223,231,224,.04);border:1px solid var(--line);color:var(--bone);font-family:inherit;font-size:14px;padding:12px 16px;outline:none;transition:border-color .2s;box-sizing:border-box;"
-          onfocus="this.style.borderColor='var(--bone-dim)'" onblur="this.style.borderColor='var(--line)'">
+          style="display:block;width:100%;background:rgba(223,231,224,.04);border:1px solid var(--line);color:var(--bone);font-family:inherit;font-size:14px;padding:12px 16px;outline:none;transition:border-color .2s;box-sizing:border-box;">
       </div>
       <div style="display:flex;flex-direction:column;gap:8px;">
         <label style="display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);line-height:1;">Email</label>
         <input name="email" type="email" required placeholder="you@example.com"
-          style="display:block;width:100%;background:rgba(223,231,224,.04);border:1px solid var(--line);color:var(--bone);font-family:inherit;font-size:14px;padding:12px 16px;outline:none;transition:border-color .2s;box-sizing:border-box;"
-          onfocus="this.style.borderColor='var(--bone-dim)'" onblur="this.style.borderColor='var(--line)'">
+          style="display:block;width:100%;background:rgba(223,231,224,.04);border:1px solid var(--line);color:var(--bone);font-family:inherit;font-size:14px;padding:12px 16px;outline:none;transition:border-color .2s;box-sizing:border-box;">
       </div>
       <div style="display:flex;flex-direction:column;gap:8px;">
         <label style="display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);line-height:1;">Message</label>
-        <textarea name="message" required rows="5" placeholder="Write something..."
+        <textarea name="message" required rows="5" placeholder="Write something..." minlength="10"
           style="display:block;width:100%;background:rgba(223,231,224,.04);border:1px solid var(--line);color:var(--bone);font-family:inherit;font-size:14px;padding:12px 16px;outline:none;resize:vertical;transition:border-color .2s;box-sizing:border-box;"></textarea>
       </div>
       <div>
-        <button type="submit" id="contact-btn" class="cta" style="margin-top:0;">
-          <i></i><span id="contact-btn-label">Send message</span>
-          <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg>
+        <button type="submit" id="contact-btn" class="cta" style="margin-top:0;cursor:pointer;background:none;">
+          <i></i>
+          <span id="contact-btn-label">SEND MESSAGE &#8599;</span>
         </button>
       </div>
     </form>
-    <p style="margin-top:28px;font-size:13px;color:var(--muted); display: flex; gap: 12px;">
-      <a href="mailto:dharmveer.97@outlook.com" class="cta" style="padding: 10px 18px; border: 1px solid var(--bone-dim); color: var(--bone); font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;">EMAIL ME ↗</a>
-      <a href="https://github.com/null-ptrx" target="_blank" rel="noopener noreferrer" class="cta" style="padding: 10px 18px; border: 1px solid var(--bone-dim); color: var(--bone); font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;">GITHUB ↗</a>
-    </p>
+    <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="mailto:dharmveer.97@outlook.com" class="contact-link" data-cursor>EMAIL ME &#8599;</a>
+      <a href="https://github.com/null-ptrx" target="_blank" rel="noopener noreferrer" class="contact-link" data-cursor>GITHUB &#8599;</a>
+    </div>
   </div>
 </section>
 
@@ -1266,7 +1272,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     <div><h4>Links</h4><ul>
       <li><a href="https://github.com/null-ptrx" target="_blank" data-cursor>GitHub</a></li>
       <li><a href="https://www.linkedin.com/in/dharmveer-singh-34212732a/" target="_blank" data-cursor>LinkedIn</a></li>
-      <li><a href="mailto:ds331048@gmail.com" data-cursor>Email</a></li>
+      <li><a href="mailto:dharmveer.97@outlook.com" data-cursor>Email</a></li>
     </ul></div>
   </div>
   <div class="foot-base">
@@ -1275,6 +1281,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     <span>WebGL &middot; Node.js &middot; Linux</span>
   </div>
 </footer>
+
 
 </div><!-- /.page -->
 
@@ -4927,49 +4934,75 @@ else addEventListener('DOMContentLoaded', boot);
   }
 
   function makeCard(p, i, total) {
-    var gx = (30 + Math.random() * 50).toFixed(1);
-    var gy = (15 + Math.random() * 55).toFixed(1);
-    var gr = (12 + Math.random() * 14).toFixed(0);
-    var gt  = (3 + Math.random() * 6).toFixed(1);
-    var gt2 = (parseFloat(gt) + 3 + Math.random() * 4).toFixed(1);
-    var gc = GLOW_COLORS[i % GLOW_COLORS.length];
-    var glowClass = (i % 3 === 1) ? 'glow glow--flame' : 'glow';
+    var isCodeRoom = p.name === "CodeRoom";
 
-    var btnStyle = "padding: 8px 16px; border: 1px solid var(--bone-dim); background: transparent; color: var(--bone); font-size: 10px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; transition: all .3s var(--ease); cursor: pointer; text-decoration: none; margin-right: 8px;";
+    var btnBase = "padding: 10px 18px; border: 1px solid; font-size: 10px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; transition: all .2s var(--ease); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;";
 
-    var btns = '';
-    if (p.github) btns += '<a href="' + esc(p.github) + '" target="_blank" rel="noopener noreferrer" style="' + btnStyle + '" onmouseover="this.style.background=\'var(--vermilion)\';this.style.borderColor=\'var(--vermilion)\'" onmouseout="this.style.background=\'transparent\';this.style.borderColor=\'var(--bone-dim)\'">GitHub</a>';
-    if (p.live)   btns += '<a href="' + esc(p.live) + '" target="_blank" rel="noopener noreferrer" style="' + btnStyle + '" onmouseover="this.style.background=\'var(--vermilion)\';this.style.borderColor=\'var(--vermilion)\'" onmouseout="this.style.background=\'transparent\';this.style.borderColor=\'var(--bone-dim)\'">Live</a>';
+    var btnGithub = p.github ? '<a href="' + esc(p.github) + '" target="_blank" rel="noopener noreferrer" style="' + btnBase + ' border-color: var(--bone-dim); color: var(--bone);" onmouseover="this.style.background=\'rgba(224,35,28,0.1)\';this.style.borderColor=\'var(--vermilion)\';this.style.color=\'var(--vermilion)\'" onmouseout="this.style.background=\'transparent\';this.style.borderColor=\'var(--bone-dim)\';this.style.color=\'var(--bone)\'">GITHUB ↗</a>' : '';
+    var btnLive = p.live ? '<a href="' + esc(p.live) + '" target="_blank" rel="noopener noreferrer" style="' + btnBase + ' border-color: var(--vermilion); background: var(--vermilion); color: #fff;" onmouseover="this.style.background=\'var(--ember)\';this.style.borderColor=\'var(--ember)\'" onmouseout="this.style.background=\'var(--vermilion)\';this.style.borderColor=\'var(--vermilion)\'">LIVE ↗</a>' : '';
 
     var roadmapHtml = '';
     if (p.roadmap && p.roadmap.length > 0) {
-      roadmapHtml = '<ul style="margin: 10px 0 0 15px; padding: 0; color: #8f9a93; font-size: 11px;">' +
-        p.roadmap.map(function(item) { return '<li style="margin-bottom: 4px;">' + esc(item) + ' <span style="background: rgba(224,35,28,0.2); color: var(--vermilion); font-size: 8px; padding: 1px 4px; letter-spacing: .1em;">COMING SOON</span></li>'; }).join('') +
+      roadmapHtml = '<ul style="margin: 15px 0 0 15px; padding: 0; color: #8f9a93; font-size: 11px;">' +
+        p.roadmap.map(function(item) { return '<li style="margin-bottom: 6px;">' + esc(item) + ' <span style="background: rgba(255,255,255,0.05); color: var(--muted); font-size: 8px; padding: 1px 4px; letter-spacing: .1em; margin-left: 6px;">COMING SOON</span></li>'; }).join('') +
         '</ul>';
     }
 
-    var activeBadge = p.active ? '<span style="display:inline-block; font-size: 8px; padding: 2px 6px; background: rgba(224,35,28,0.2); color: var(--vermilion); margin-bottom: 8px;"><i style="display:inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--vermilion); margin-right: 4px; animation: glow-pulse 1.5s infinite;"></i> ACTIVE &middot; IN DEVELOPMENT</span>' : '';
+    var activeBadge = p.active ? '<div style="font-size: 9px; letter-spacing: .2em; color: var(--vermilion); margin-bottom: 12px; display: flex; align-items: center;"><i style="display:inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--vermilion); margin-right: 6px; box-shadow: 0 0 8px var(--vermilion); animation: glow-pulse 2s infinite;"></i> ACTIVE &middot; IN DEVELOPMENT</div>' : '';
 
-    var num = String(i + 1).padStart(2, '0');
-    var tot = String(total).padStart(2, '0');
-
-    return '<article class="card" data-rv="up" style="display: flex; flex-direction: column; background: rgba(5,7,10,0.8); border: 1px solid var(--line-soft); padding: 20px;">' +
-      (activeBadge ? activeBadge : '') +
-      '<div style="flex-grow: 1;">' +
-      '<b style="display: block; font-size: 18px; color: var(--bone); margin-bottom: 10px;">' + esc(p.name) + '</b>' +
-      '<p style="font-size: 13px; color: #8f9a93; margin-bottom: 10px;">' + esc(p.description) + '</p>' +
-      '<div style="font-size: 11px; color: var(--muted); margin-bottom: 10px;">' + esc(p.tech) + '</div>' +
+    return '<article class="card" data-rv="up" style="display: flex; flex-direction: column; background: rgba(5,7,10,0.8); border: 1px solid var(--line-soft); padding: 24px; ' + (isCodeRoom ? 'grid-column: 1 / -1;' : '') + '">' +
+      activeBadge +
+      '<b style="display: block; font-size: 20px; color: var(--bone); margin-bottom: 12px; letter-spacing: -0.01em;">' + esc(p.name) + '</b>' +
+      '<p style="font-size: 14px; color: #b4bfb7; line-height: 1.6; margin-bottom: 16px;">' + esc(p.description) + '</p>' +
+      '<div style="font-size: 11px; color: var(--muted); margin-bottom: 20px; text-transform: uppercase; letter-spacing: .1em;">' + esc(p.tech) + '</div>' +
       roadmapHtml +
-      '</div>' +
-      '<div style="margin-top: 20px; border-top: 1px solid var(--line-soft); padding-top: 15px;">' + btns + '</div>' +
+      '<div style="margin-top: auto; padding-top: 20px; display: flex; gap: 12px;">' + btnGithub + btnLive + '</div>' +
     '</article>';
   }
 
   var projects = [
-    { name: "Linux Hub", description: "A centralized hub to manage Linux system configurations.", tech: "Linux, Bash, Node.js", github: "", live: "" },
-    { name: "CodeRoom", description: "Collaborative coding classroom for real-time pair programming.", tech: "WebSockets, React, Node.js", github: "", live: "" },
-    { name: "Developer Portfolio", description: "This portfolio site, built with Vite and Tailwind.", tech: "Vite, React, Tailwind CSS", github: "", live: "" },
-    { name: "Personal Password Manager", description: "Secure, local-first password manager.", tech: "Node.js, Encryption, CLI", github: "", live: "" }
+    {
+      name: "CodeRoom",
+      description: "Real-time classroom where students join rooms via invite links to chat, share code windows and debug together. A permission system (view / edit / collaborate) is enforced server-side on every socket event.",
+      tech: "React, TypeScript, Node.js, Socket.IO, MongoDB",
+      github: "https://github.com/null-ptrx/Null-Room",
+      live: "https://null-room.vercel.app/",
+      active: true,
+      roadmap: [
+        "Voice and video calls in rooms",
+        "Browser-based online IDE with code execution",
+        "Live Share-style collaborative project mode",
+        "Live per-student code windows",
+        "Room and invite management dashboard"
+      ]
+    },
+    {
+      name: "Linux Hub",
+      description: "Donation platform for open-source Linux maintainers. GitHub OAuth sign-in, server-rendered profile pages with repos, follower stats and a supporter leaderboard, plus Razorpay payments with preset and custom amounts.",
+      tech: "Next.js 16, React 19, Tailwind CSS v4, NextAuth.js",
+      github: "",
+      live: "",
+      active: false,
+      roadmap: []
+    },
+    {
+      name: "Developer Portfolio",
+      description: "Frontend-only portfolio with a Japanese night theme. Projects are static data and the contact form emails me directly via Web3Forms, with no backend or database.",
+      tech: "React (Vite), Tailwind CSS",
+      github: "https://github.com/null-ptrx/Portfolio",
+      live: "https://portfolio-ochre-tau-83l9otq44u.vercel.app/",
+      active: false,
+      roadmap: []
+    },
+    {
+      name: "Personal Password Manager",
+      description: "Full-stack password manager with full CRUD through a REST API. Optimistic UI updates re-sync with the backend to keep client and database in sync. Upgraded from an earlier localStorage version.",
+      tech: "React 19, Express.js 5, MongoDB, Vite",
+      github: "https://github.com/null-ptrx/PersonalPasswordManager-MongoDB",
+      live: "https://personal-password-manager-mongo-db.vercel.app/",
+      active: false,
+      roadmap: []
+    }
   ];
 
   var container = document.getElementById('project-cards');
@@ -4980,54 +5013,71 @@ else addEventListener('DOMContentLoaded', boot);
   }
 
   /* ── Contact form ── */
-  window.handleContact = function(e) {
-    e.preventDefault();
-    var form = e.target;
+  (function initContactForm() {
+    var form = document.getElementById('contact-form');
     var btn = document.getElementById('contact-btn');
-    var lbl = document.getElementById('contact-btn-label');
+    var label = document.getElementById('contact-btn-label');
+    if (!form) return;
 
-    var apiKey = import.meta.env.VITE_WEB3FORMS_KEY;
-    var data = {
-        access_key: apiKey,
-        name: form.name.value,
-        email: form.email.value,
-        message: form.message.value,
-        subject: "New message from portfolio",
-        from_name: "Portfolio Contact",
-        botcheck: form.botcheck.value
-    };
+    /* Read Web3Forms key from URL query param (passed by App.jsx) */
+    var apiKey = new URLSearchParams(location.search).get('apikey') || '';
 
-    if (!data.name || !data.email || data.message.length < 10) {
-        alert("Please fill all fields (message min 10 chars).");
-        return;
-    }
-
-    lbl.textContent = 'Sending…';
-    btn.disabled = true;
-
-    fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    })
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      if (data.success) {
-        lbl.textContent = 'MESSAGE SENT ✓';
-        form.reset();
-        setTimeout(function() { lbl.textContent = 'Send message'; btn.disabled = false; }, 4000);
-      } else {
-        throw new Error(data.message);
-      }
-    })
-    .catch(function(err) {
-      lbl.textContent = 'ERROR — TRY AGAIN';
-      btn.disabled = false;
-      console.error(err);
+    /* Focus / blur border highlight */
+    form.querySelectorAll('input:not([type=checkbox]), textarea').forEach(function(el) {
+      el.addEventListener('focus', function() { el.style.borderColor = 'var(--bone-dim)'; });
+      el.addEventListener('blur',  function() { el.style.borderColor = 'var(--line)'; });
     });
-  };
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var name = form.querySelector('[name=name]').value.trim();
+      var email = form.querySelector('[name=email]').value.trim();
+      var message = form.querySelector('[name=message]').value.trim();
+      var honeypot = form.querySelector('[name=botcheck]').checked;
+
+      /* Validation */
+      if (!name || !email || message.length < 10) return;
+      if (honeypot) return; /* bot */
+      if (!apiKey) { console.error('Missing VITE_WEB3FORMS_KEY'); return; }
+
+      btn.disabled = true;
+      label.textContent = 'SENDING...';
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: apiKey,
+          name: name,
+          email: email,
+          message: message,
+          subject: 'New message from portfolio',
+          from_name: 'Portfolio Contact',
+          botcheck: ''
+        })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.success) {
+          label.textContent = 'MESSAGE SENT \u2713';
+          form.reset();
+          setTimeout(function() {
+            label.textContent = 'SEND MESSAGE \u2197';
+            btn.disabled = false;
+          }, 4000);
+        } else {
+          throw new Error(data.message || 'Failed');
+        }
+      })
+      .catch(function() {
+        label.textContent = 'ERROR \u2014 TRY AGAIN';
+        btn.disabled = false;
+      });
+    });
+  })();
 })();
 </script>
+
 
 </body>
 </html>
