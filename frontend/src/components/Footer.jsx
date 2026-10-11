@@ -25,7 +25,7 @@ const Footer = () => {
             </p>
             <a href="https://github.com/null-ptrx" target="_blank" rel="noopener noreferrer" className="term-footer-link">[ github ]</a>
             <a href="https://www.linkedin.com/in/dharmveer-singh-34212732a/" target="_blank" rel="noopener noreferrer" className="term-footer-link">[ linkedin ]</a>
-            <a href="mailto:ds331048@gmail.com" className="term-footer-link">[ email ]</a>
+            <a href="mailto:dharmveer.97@outlook.com" className="term-footer-link">[ email ]</a>
           </div>
         </div>
 
