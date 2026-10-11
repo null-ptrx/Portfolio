@@ -1042,15 +1042,20 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
       <img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/35388445965f970fa28af333/garden-bush.webp" alt="" width="1717" height="876" loading="lazy" decoding="async">
     </span>
   </div>
-  <div class="sec-head" data-rv="fade">
+  <div class="sec-head" data-rv="fade" style="margin-bottom: 2rem;">
     <span class="k"><b>02</b> &mdash; Skills</span><span class="rule"></span><span class="k">./skills</span>
   </div>
-  <div class="cur-head" data-rv="up" style="display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 2rem; margin-bottom: 2rem;">
+  <div class="cur-head" data-rv="up" style="display: flex; flex-direction: column; align-items: center; width: 100%; margin: 0; padding: 0;">
     <h2 class="display h-sec" style="text-align: center;">The stack I reach for.</h2>
     <p class="body-lg" style="text-align: center; width: 100%; margin: 2rem auto 2rem; color: #efe6e1; font-weight: 400; text-shadow: 0 2px 16px rgba(0,0,0,0.7), 0 0 24px rgba(200,30,40,0.25); font-size: clamp(1rem, 1.5vw, 1.4rem); line-height: 1.6; position: relative; z-index: 100;">
       Tools I use day-to-day to build, deploy, and debug reliable systems. No magic frameworks — just things that work at <span style="color: var(--vermilion);">3am</span>.
     </p>
   </div>
+  <style>
+    @media (min-width: 1024px) {
+      .cur-head .body-lg { white-space: nowrap; width: auto; margin-top: 1rem; margin-bottom: 2rem; }
+    }
+  </style>
   <style>
     @media (min-width: 1024px) {
       .cur-head .body-lg { white-space: nowrap; max-width: none; }
