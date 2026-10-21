@@ -1,23 +1,35 @@
 import { load } from 'js-yaml';
 
-// Load all markdown files from both repository content/blog and local frontend/src/content/blog
+// Load all markdown files from root content/blog, frontend/content/blog, and frontend/src/content/blog
 const modules = import.meta.glob(
   [
-    '../../content/blog/*.{md,mdx}',
-    '/src/content/blog/*.{md,mdx}',
+    '../../../content/blog/*.{md,mdx,markdown}',
+    '../../content/blog/*.{md,mdx,markdown}',
+    '/src/content/blog/*.{md,mdx,markdown}',
   ],
   { query: '?raw', eager: true }
 );
 
 /**
- * Parse frontmatter and content from raw markdown string
+ * Format title from slug: "bcrypt-vs-bcryptjs" -> "Bcrypt Vs Bcryptjs"
+ */
+function titleFromSlug(slug) {
+  return slug
+    .replace(/[-_]/g, ' ')
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+/**
+ * Parse frontmatter and content from raw markdown string.
+ * Gracefully handles files with or without YAML frontmatter.
  */
 function parsePost(rawContent, slug) {
+  const trimmed = rawContent.trim();
   const frontmatterRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/;
-  const match = frontmatterRegex.exec(rawContent.trim());
+  const match = frontmatterRegex.exec(trimmed);
 
   let metadata = {};
-  let content = rawContent;
+  let content = trimmed;
 
   if (match) {
     const [, yamlBlock, body] = match;
@@ -27,6 +39,19 @@ function parsePost(rawContent, slug) {
       console.error(`Failed to parse YAML frontmatter for "${slug}":`, err);
     }
     content = body.trim();
+  } else {
+    // Fallback: If no frontmatter, extract the first # Heading as title if present
+    const headingMatch = /^#\s+(.+)$/m.exec(trimmed);
+    if (headingMatch) {
+      metadata.title = headingMatch[1].trim();
+      // Remove that first H1 heading from content to prevent duplicate title display
+      content = trimmed.replace(/^#\s+.+$/m, '').trim();
+    }
+    // Extract first non-empty paragraph as description if not set
+    const firstParagraph = content.split(/\n\s*\n/).find((p) => !p.startsWith('#') && p.trim().length > 0);
+    if (firstParagraph) {
+      metadata.description = firstParagraph.replace(/[*_`#]/g, '').slice(0, 160) + (firstParagraph.length > 160 ? '...' : '');
+    }
   }
 
   // Calculate approximate reading time (200 words per minute)
@@ -53,7 +78,7 @@ function parsePost(rawContent, slug) {
 
   return {
     slug,
-    title: metadata.title || slug.replace(/[-_]/g, ' '),
+    title: metadata.title || titleFromSlug(slug),
     date: dateStr || new Date().toISOString().split('T')[0],
     description: metadata.description || '',
     tags,
@@ -72,9 +97,9 @@ export function getAllPosts() {
     const rawContent = typeof rawModule === 'string' ? rawModule : rawModule?.default || '';
     if (!rawContent) continue;
 
-    // Extract slug from filename (e.g., ../../content/blog/my-post.md -> my-post)
+    // Extract slug from filename (e.g., ../../../content/blog/my-post.md -> my-post)
     const filename = path.split('/').pop() || '';
-    const slug = filename.replace(/\.(md|mdx)$/, '');
+    const slug = filename.replace(/\.(md|mdx|markdown)$/, '');
 
     if (!slug) continue;
 
@@ -88,8 +113,8 @@ export function getAllPosts() {
 
   // Sort newest first
   return posts.sort((a, b) => {
-    const dateA = new Date(a.date).getTime();
-    const dateB = new Date(b.date).getTime();
+    const dateA = new Date(a.date).getTime() || 0;
+    const dateB = new Date(b.date).getTime() || 0;
     return dateB - dateA;
   });
 }
