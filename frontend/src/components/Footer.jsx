@@ -1,35 +1,46 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="border-t border-[#414868]/50 py-14 px-4 md:px-20">
-      <div className="max-w-7xl mx-auto flex flex-col items-center gap-8">
-        {/* Brand */}
-        <Link to="/" className="text-lg font-bold tracking-tighter no-underline">
-          <span className="text-[#c0caf5]">Null</span>
-          <span className="text-[#7aa2f7]"> Ptr</span>
-        </Link>
-
-        {/* Links */}
-        <div className="flex flex-wrap justify-center gap-6 md:gap-8 text-sm">
-          <Link to="/blog" className="tn-footer-link">Blog</Link>
-          <span className="text-[#414868]">·</span>
-          <a href="https://github.com/null-ptrx" className="tn-footer-link">GitHub</a>
-          <span className="text-[#414868]">·</span>
-          <a href="https://www.linkedin.com/in/dharmveer-singh-34212732a/" className="tn-footer-link">LinkedIn</a>
-          <span className="text-[#414868]">·</span>
-          <a href="mailto:ds331048@gmail.com" className="tn-footer-link">Email</a>
+    <footer className="border-t border-border bg-background">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+        <div className="flex flex-col gap-1">
+          <Link to="/" className="font-display text-base font-bold tracking-tight text-foreground no-underline">
+            Null <span className="text-muted-foreground font-normal">Ptr</span>
+          </Link>
+          <p className="text-xs text-muted-foreground font-mono">
+            © 2026 Dharmveer Singh
+          </p>
         </div>
 
-        {/* Copyright */}
-        <div className="flex items-center gap-2 text-xs text-[#565f89] font-mono">
-          <span className="text-[#414868]">//</span>
-          <span>© 2026 Null Ptr. All rights reserved.</span>
+        <div className="flex flex-wrap items-center gap-6 text-sm">
+          <Link to="/blog" className="mono-link">
+            Blog
+          </Link>
+          <a
+            href="https://github.com/null-ptrx"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mono-link"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/dharmveer-singh-34212732a/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mono-link"
+          >
+            LinkedIn
+          </a>
+          <a href="mailto:ds331048@gmail.com" className="mono-link">
+            Email
+          </a>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
